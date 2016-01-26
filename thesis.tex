@@ -1,0 +1,266 @@
+\documentclass[12pt, a4paper, twoside, openright]{article}		% 5p gir 2 kolonner pr side. 1p gir 1 kolonne pr side.
+%\journal{students}
+\usepackage[T1]{fontenc} 						% Vise norske tegn.
+% \usepackage[latin1]{inputenc}		% Velger tengsettet i dette dokumentet			
+\usepackage[english]{babel}		
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{amsmath,amssymb}
+\usepackage{esint}
+\usepackage[output-decimal-marker = {,}]{siunitx}
+\usepackage[font=footnotesize,labelsep=period,labelfont=bf,margin=1cm]{caption}
+\usepackage{import}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{lipsum}
+\usepackage[numbers]{natbib}
+\usepackage[nottoc,numbib]{tocbibind}
+\usepackage[raggedright]{titlesec}
+%\usepackage{titlesec}
+\usepackage{emptypage}
+\let\oldsection\section
+\def\section{\cleardoublepage\oldsection}
+\newcommand{\sectionbreak}{\clearpage}
+\usepackage{afterpage}
+\newcommand\blankpage{%
+    \null
+    \thispagestyle{empty}%
+    \addtocounter{page}{-1}%
+    \newpage}
+
+
+\setcounter{totalnumber}{5}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\floatpagefraction}{0.35}
+\renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
+\DeclareRobustCommand{\orderof}{\ensuremath{\mathcal{O}}}
+\setlength\parindent{24pt}
+\numberwithin{equation}{section}
+
+
+
+\setcounter{totalnumber}{5}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\bottomfraction}{0.95}
+\renewcommand{\floatpagefraction}{0.35}
+
+\makeatletter
+\def\ps@pprintTitle{%
+  \let\@oddhead\@empty
+  \let\@evenhead\@empty
+  \let\@oddfoot\@empty
+  \let\@evenfoot\@oddfoot
+}
+\makeatother
+
+\begin{document}
+
+\begin{titlepage}
+
+\newcommand{\HRule}{\rule{\linewidth}{0.5mm}} % Defines a new command for the horizontal lines, change thickness here
+
+\center % Center everything on the page
+ 
+%----------------------------------------------------------------------------------------
+%	HEADING SECTIONS
+%----------------------------------------------------------------------------------------
+
+%\textsc{\LARGE Norwegian University of \\ \vspace{0.3cm} Science and Technology}\\[1.5cm] % Name of your university/college
+\textsc{\Large Master thesis in applied physics and mathematics}\\[0.5cm] % Major heading such as course name
+%\textsc{\large Minor Heading}\\[0.5cm] % Minor heading such as course title
+
+%----------------------------------------------------------------------------------------
+%	TITLE SECTION
+%----------------------------------------------------------------------------------------
+
+\HRule \\[0.4cm]
+{ \huge \bfseries The dynamics of skyrmions in an electric field}\\[0.4cm] % Title of your document
+\HRule \\[1.5cm]
+ 
+%----------------------------------------------------------------------------------------
+%	AUTHOR SECTION
+%----------------------------------------------------------------------------------------
+
+\begin{minipage}{0.4\textwidth}
+\begin{flushleft} \large
+\emph{Author:}\\
+\O yvind \textsc{Johansen} % Your name
+\end{flushleft}
+\end{minipage}
+~
+\begin{minipage}{0.4\textwidth}
+\begin{flushright} \large
+\emph{Supervisor:} \\
+Prof. Jacob \textsc{Linder} % Supervisor's Name
+\end{flushright}
+\end{minipage}\\[4cm]
+
+% If you don't want a supervisor, uncomment the two lines below and remove the section above
+%\Large \emph{Author:}\\
+%John \textsc{Smith}\\[3cm] % Your name
+
+%----------------------------------------------------------------------------------------
+%	DATE SECTION
+%----------------------------------------------------------------------------------------
+
+{\large \today}\\[3cm] % Date, change the \today to a set date if you want to be precise
+
+%----------------------------------------------------------------------------------------
+%	LOGO SECTION
+%----------------------------------------------------------------------------------------
+
+\includegraphics[width=0.5\textwidth]{Figures/ntnu-logo.png} % Include a department/university logo - this will require the graphicx package
+ 
+%----------------------------------------------------------------------------------------
+
+\vfill % Fill the rest of the page with whitespace
+
+\end{titlepage}
+
+%\title{Magnetization dynamics of domain walls and skyrmions in micromagnetics}
+%\author{\O yvind Johansen}
+%\date{\today}
+
+%\maketitle
+\afterpage{\blankpage}
+\pagenumbering{roman}
+
+\section*{Summary}
+\newpage
+
+\section*{Preface}
+%\\
+
+\begin{minipage}{0.95\textwidth}
+\begin{flushright}
+\O yvind Johansen \\
+Trondheim, Norway \\ 
+2016
+\end{flushright}
+\end{minipage}\\[4cm]
+
+\newpage
+
+\tableofcontents
+
+\newpage
+\afterpage{\blankpage}
+
+\pagenumbering{arabic}
+
+\section{Introduction}
+
+\section{Fundamental theory}
+%\subsection{Zeeman energy}
+%The Zeeman energy is the energy contribution from the interaction between the magnetization $\vec{M}(\vec{r})$ in the magnetic material and an external magnetic field $\vec{H}_Z(\vec{r})$. This energy can be expressed as
+%\begin{align}
+%E_Z = -\mu_0\int \d V \vec{M}(\vec{r})\cdot\vec{H}_Z(\vec{r}),
+%\end{align}
+%with $\mu_0$ being the vacuum permeability.
+\subsection{Exchange energy}
+Ferromagnetism occurs in materials where the spins tend to align with each other, and thereby being able to generate an observable magnetic field outside of the material. The mechanism behind this is the exchange interaction between the spins. In ferromagnetic materials the system can lower its energy by having parallel neighboring spins. This is described by the Heisenberg Hamiltonian,
+\begin{align}
+H = - J\sum_{\langle i,j\rangle} \vec{S}_i\cdot\vec{S}_j,
+\end{align}
+with $J$ being the exchange integral which is positive for ferromagnetic materials and $\vec{S}$ a dimensionless spin-vector. The spins can be expressed in terms of the magnetization, which is the average magnetic moment. As the magnetic moment and the spin of an electron are anti-parallel, this relation becomes
+\begin{align}
+\vec{S}_i = -\frac{S}{M_s}\vec{M}_i,
+\end{align}
+with $M_s$ being the saturation magnetization and $S$ the magnitude of the spin. The magnetization is a classical vector, and in micromagnetism it is treated as a slowly varying smooth function. One can therefore perform a Taylor expansion of it. By doing that, one can show \cite{Project} that the energy density can be written as
+\begin{align}
+\epsilon_{EX} = \frac{\textrm{d} E_{EX}}{\textrm{d} V} = -\frac{A}{M_s^2}\vec{M}(\vec{r})\vec{\nabla}^2\vec{M}(\vec{r}) = \frac{A}{M_s^2}\partial_i\vec{M}(\vec{r})\partial_i\vec{M}(\vec{r}), \label{eq:exchDensity}
+\end{align}
+with $A$ being the exchange stiffness
+\begin{align}
+A = \frac{J S^2}{2a}
+\end{align}
+and $a$ being the lattice constant.
+\subsection{Perpendicular magnetic anisotropy}
+In some magnetic materials we may have something known as magnetic anisotropy. As the name indicates, there is an anisotropy in the material that makes certain magnetization directions more energetically favorable than others. This mostly stems from the spin-orbit coupling. If one considers the restframe of the electron instead of the proton, the proton is orbiting the electron and thereby causing a temporal varying electric field. Amp\`{e}re's ciruital law then says that the electron observes a magnetic field proportional to the orbital motion of the proton. This magnetic field then interacts with the magnetic moment of the electron, which is proportional to the spin, hence the name spin-orbit coupling. Taking this into consideration as well as the atomic structure in the material, one can see that one could end up with a material where the magnetic field the electrons experience from the spin-orbit coupling would allow one direction to be easier magnetized than others.
+
+In some layered ultrathin film structures, such as Pd/Co \cite{Carcia1985}, it has been discovered that the magnetization has a lower energy when it is perpendicular to the films. This means that the easy axis of the material is perpendicular to the films, and we then have something called perpendicular magnetic anisotropy (PMA). The anisotropic energy is independent of the direction the magnetization has along the easy axis, meaning the energy is the same if the magnetization points into or out of the films. Letting $K$ be the anisotropy constant and $\theta$ the angle to the normal of the films, the anisotropic energy density can then be written as
+\begin{align}
+\epsilon_{PMA} = K\sin^2\theta \label{eq:PMADensity}
+\end{align} 
+to the lowest order in $\theta$. Here we have normalized the energy density in such a way that if the magnetization points along the easy axis the energy density is zero.
+\subsection{Voltage induced magnetic anisotropy}
+\subsection{Rashba spin-orbit coupling}
+In materials where the motion of the electrons is confined to a plane, and the inversion symmetry is broken along the axis perpendicular to that plane, there is a splitting of the spin energy levels. Inversion symmetry can for example be broken at the interface between two materials \cite{Heide2006}. The inversion asymmetry causes an electric field perpendicular to the plane of motion, as the gradient of the electrostatic potential becomes non-zero when inversion symmetry is broken ($V(\vec{r}) \neq V(-\vec{r})$). When particles move in an electric field, they experience a magnetic field which can be seen by performing a Lorentz transformation into the particles' restframe. This magnetic field is proportional to $\vec{v}\times\vec{E}$. Because of the magnetic field the energy levels become spin dependent, as the field couples to the spin. This is described by the Rashba Hamiltonian \citep{BychovRashba1984}
+\begin{align}
+H_R &= \frac{\alpha_R}{\hbar}\vec{\sigma}\cdot(\vec{p}\times\hat{n}) = \frac{\alpha_R}{\hbar}\sigma_i\varepsilon_{ijk}p_jn_k \\
+&= \frac{\alpha_R}{\hbar}\varepsilon_{kij}\sigma_ip_jn_k = \alpha_R (\vec{\sigma}\times\vec{k})\cdot\hat{n}.
+\end{align}
+Here $\alpha_R$ is the Rashba parameter, $\vec{p} = \hbar\vec{k}$ the momentum of the electrons, $\hat{n}$ a unit vector perpendicular to the plane of motion and $\vec{\sigma}$ is a vector of the Pauli matrices.
+
+\subsection{The Dzyaloshinskii--Moriya interaction}
+The Dzyaloshinskii--Moriya interaction (DMI) is an antisymmetric exchange coupling between spins, given by the Hamiltonian
+\begin{align}
+H_{DM} = \sum_{\langle i,j\rangle}\vec{D}_{ij}\cdot(\vec{S}_i\times\vec{S}_j).
+\end{align}
+
+\subsection{Skyrmions}
+
+\section{Magnetization dynamics}
+
+\section{The Model}
+\begin{align}
+\nonumber \frac{\partial \vec{M}}{\partial t} &= -\gamma'\vec{M}\times(\vec{H}_{\text{eff}}+\vec{H}_R-\frac{\beta}{M_s} \vec{M}\times\vec{H}_R) \\
+&\hspace{4.5mm}+\frac{\alpha}{M_s}\vec{M}\times\frac{\partial\vec{M}}{\partial t} + b_J (\hat{j}_e\cdot\vec{\nabla})\vec{M} - \beta b_J \vec{M}\times(\hat{j}_e\cdot\vec{\nabla})\vec{M}, \\
+\vec{H}_R &= \frac{\alpha_R m_e}{\hbar \mu_B}b_J (\hat{z}\times\hat{j}_e) = C_R b_J (\hat{z}\times\hat{j}_e).
+\end{align}
+\begin{align}
+\vec{F}_R &= -\mu_0\int \d V\sum_k (\vec{\nabla}M_k)\left[\vec{H}_R - \frac{\beta}{M_s}\vec{M}\times\vec{H}_R\right]_k \\
+&= -\mu_0 \pi\beta C_R b_J M_s d \int_0^{\infty} \d r \left(\frac{\partial \theta}{\partial r} r + \sin\theta\cos\theta \right) \hat{x} \\
+&\hspace{4.5mm}- \mu_0 \pi C_R b_J M_s d \int_0^{\infty} \d r \left(r\frac{\partial \theta}{\partial r}\cos\theta + \sin\theta\right) \hat{y} \\
+&= -\mu_0 \pi\beta C_R b_J M_s d \int_0^{\infty} \d r \left(\frac{\partial \theta}{\partial r} r + \sin\theta\cos\theta \right) \hat{x}.
+\end{align}
+\begin{align}
+\int_0^{\infty} \d r \sin\theta(r) = r\sin\theta(r)|_{r = 0}^{r=\infty} - \int_0^{\infty} \d r r \frac{\partial \theta}{\partial r} \cos\theta(r) \\
+\int_0^{\infty} \d r \left(r\frac{\partial \theta}{\partial r}\cos\theta + \sin\theta\right) = r\sin\theta(r)|_{r = 0}^{r=\infty} = 0.
+\end{align}
+\begin{align}
+\epsilon_{EF} = \eta E(\vec{r}) \left(1-m_z^2\right) = \eta E(\vec{r}) \sin^2\theta.
+\end{align}
+\begin{align}
+E(\vec{r}) &= E_x x + E_y y \\
+&= E_x x_0 + E_y y_0 + E_x r \cos\phi + E_y r \sin\phi.
+\end{align}
+\begin{align}
+U_{EF} &= \int \d V \epsilon_{EF} \\
+&= \eta \int_0^d \d z \int_0^{2\pi}\d \phi \left( E_x x_0 + E_y y_0 + E_x r \cos\phi + E_y r \sin\phi \right) \int_0^{\infty}\d r r \sin^2\theta \\
+&= 2\pi\eta d\left(E_x x_0 + E_y y_0\right)\int_0^{\infty}\d r r \sin^2\theta.
+\end{align}
+\begin{align}
+\vec{F}_E &= -\vec{\nabla}U_{EF} \\
+&= -2\pi \eta d \left(E_x \hat{x} + E_y \hat{y}\right) \int_0^{\infty}\d r r \sin^2\theta.
+\end{align}
+\begin{align}
+\vec{F}_R+\vec{F}_E + \vec{G} \times\left(\vec{v}+b_J\hat{j}_e\right) + D\left(\alpha\vec{v}+\beta b_J \hat{j}_e\right) = 0.
+\end{align}
+\begin{align}
+\vec{G} &= \frac{2\pi M_s\mu_0 d}{\gamma'}\left[\cos\theta\right]_{\theta(r=0)}^{\theta(r=\infty)} \hat{z}\\
+D &= - \frac{\pi M_s \mu_0 d}{\gamma '} \int_0^{\infty} \d r \left(r\left(\frac{\partial \theta}{\partial r}\right)^2+\frac{\sin^2\theta}{r}\right).
+\end{align}
+\begin{align}
+\alpha_C &= \frac{\alpha}{4} \int_0^{\infty} \d r \left(r\left(\frac{\partial \theta}{\partial r}\right)^2+\frac{\sin^2\theta}{r}\right), \\
+\beta_C &=\frac{\beta}{4} \int_0^{\infty} \d r \left(r\left(\frac{\partial \theta}{\partial r}\right)^2+\frac{\sin^2\theta}{r}\right), \\
+R &= \frac{\gamma'\beta C_R}{4} \int_0^{\infty} \d r \left(\frac{\partial \theta}{\partial r} r + \sin\theta\cos\theta \right), \\
+C_E &= \frac{\gamma' \eta}{2\mu_0 M_s}\int_0^{\infty}\d r r\sin^2\theta.
+\end{align}
+
+\begin{align}
+\dot{x}_0 &= - \frac{1+\alpha_C\beta_C + R}{1+\alpha_C^2}b_J + \frac{C_E}{1+\alpha_C^2}E_y - \frac{\alpha_C C_E}{1+\alpha_C^2}E_x, \\
+\dot{y}_0 &= \frac{\alpha_C-\beta_C - R}{1+\alpha_C^2}b_J - \frac{C_E}{1+\alpha_C^2}E_x - \frac{\alpha_C C_E}{1+\alpha_C^2}E_y.
+\end{align}
+\section{Conclusion}
+
+\bibliography{thesis}
+\bibliographystyle{unsrt}
+
+
+\end{document}
