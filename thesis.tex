@@ -200,11 +200,42 @@ Here $\alpha_R$ is the Rashba parameter, $\vec{p} = \hbar\vec{k}$ the momentum o
 \subsection{The Dzyaloshinskii--Moriya interaction}
 The Dzyaloshinskii--Moriya interaction (DMI) is an antisymmetric exchange coupling between spins, given by the Hamiltonian
 \begin{align}
-H_{DM} = \sum_{\langle i,j\rangle}\vec{D}_{ij}\cdot(\vec{S}_i\times\vec{S}_j).
+H_{DM} = \sum_{\langle i,j\rangle}\vec{D}_{ij}\cdot(\vec{S}_i\times\vec{S}_j). \label{eq:DMIHamiltonian}
+\end{align}
+This interaction only occurs in materials where the inversion symmetry is broken. The magnitude of $\vec{D}_{ij}$ depends on the material properties, and the direction of $\vec{D}_{ij}$ depends on the symmetry of the atomic structure in the material. Moriya showed \cite{Moriya1960} that if there is an $n$-fold axis (with $n \geq 2$) along the axis between the particles with spins $\vec{S}_i$ and $\vec{S}_j$, $\vec{D}_{ij}$ will be parallel to that axis. Using that in a Taylor expansion of \eqref{eq:DMIHamiltonian}, it can be shown that the energy density becomes
+\begin{align}
+\epsilon_{DM}^{\textrm{(bulk)}} = \frac{D}{M_s^2}\vec{M}\cdot(\vec{\nabla}\times\vec{M}).
+\end{align}
+On the other hand, if there is a mirror plane located at the center of the line between the particles with spins $\vec{S}_i$ and $\vec{S}_j$ that is perpendicular to the axis intersecting them, the vector $\vec{D}_{ij}$ lies in the mirror plane. In a more specific case where the interaction between the spins $\vec{S}_i$ and $\vec{S}_j$ is mediated by a third magnetic particle (different from the other two) located in the mirror plane, $\vec{D}_{ij}$ is perpendicular to the triangle spanned by the three particles. Assuming the magnetic particles with spins $\vec{S}_i$ and $\vec{S}_j$ are located in the $xy$-plane, and that the mediating magnetic particle of a different type lies above them, a Taylor expansion of \eqref{eq:DMIHamiltonian} yields the energy density
+\begin{align}
+\epsilon_{DM}^{\textrm{(interface)}} = \frac{D}{M_s^2}\left[M_z(\vec{\nabla}\cdot\vec{M})-(\vec{M}\cdot\vec{\nabla})M_z\right].
 \end{align}
 
 \subsection{Skyrmions}
-
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{Figures/SkyrmionRadialProfiles.pdf} 
+\caption{The solution of the out-of-plane angle $\theta$ of the skyrmion profile for different values of $C$.}
+\label{fig:dipole_field} 
+\end{center}
+\end{figure}
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/HedgehogSkyrmionPsi0.pdf}
+  \caption{}
+  \label{fig:ThetaBulk}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/HedgehogSkyrmionPsiPi.pdf}
+  \caption{}
+  \label{fig:ThetaInt}
+\end{subfigure}
+\caption{A hedgehog skyrmion with a helicity (a) $\psi = 0$ and (b) $\psi = \pi$. The in-plane component of the magnetization is visualized by the vectors, while the $z$-component is shown in the background color.}
+\label{fig:ThetaRho}
+\end{figure}
 \section{Magnetization dynamics}
 
 \section{The Model}
@@ -232,7 +263,7 @@ E(\vec{r}) &= E_x x + E_y y \\
 \end{align}
 \begin{align}
 U_{EF} &= \int \d V \epsilon_{EF} \\
-&= \eta \int_0^d \d z \int_0^{2\pi}\d \phi \left( E_x x_0 + E_y y_0 + E_x r \cos\phi + E_y r \sin\phi \right) \int_0^{\infty}\d r r \sin^2\theta \\
+&= \eta \int_0^d \d z \int_0^{2\pi}\d \phi \int_0^{\infty}\d r\left( E_x x_0 + E_y y_0 + E_x r \cos\phi + E_y r \sin\phi \right) r \sin^2\theta \\
 &= 2\pi\eta d\left(E_x x_0 + E_y y_0\right)\int_0^{\infty}\d r r \sin^2\theta.
 \end{align}
 \begin{align}
