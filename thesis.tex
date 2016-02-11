@@ -1,6 +1,9 @@
-\documentclass[12pt, a4paper, twoside, openright]{article}		% 5p gir 2 kolonner pr side. 1p gir 1 kolonne pr side.
-%\journal{students}
+\documentclass[12pt, a4paper, twoside, openright]{report}
+%\documentclass[12pt, a4paper, twoside, openright]{article}		% 5p gir 2 kolonner pr side. 1p gir 1 kolonne pr side.
 \usepackage[T1]{fontenc} 						% Vise norske tegn.
+\usepackage[margin=2.5cm]{geometry}
+%Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
+\usepackage[Bjornstrup]{fncychap}
 % \usepackage[latin1]{inputenc}		% Velger tengsettet i dette dokumentet			
 \usepackage[english]{babel}		
 \usepackage[utf8]{inputenc}
@@ -13,22 +16,22 @@
 \usepackage{import}
 \usepackage{caption}
 \usepackage{subcaption}
-\usepackage[margin=2.5cm]{geometry}
 \usepackage{lipsum}
+\usepackage{fixmath}
 \usepackage[numbers]{natbib}
 \usepackage[nottoc,numbib]{tocbibind}
-\usepackage[raggedright]{titlesec}
+%\usepackage[raggedright]{titlesec}
 %\usepackage{titlesec}
 \usepackage{emptypage}
-\let\oldsection\section
-\def\section{\cleardoublepage\oldsection}
-\newcommand{\sectionbreak}{\clearpage}
-\usepackage{afterpage}
-\newcommand\blankpage{%
-    \null
-    \thispagestyle{empty}%
-    \addtocounter{page}{-1}%
-    \newpage}
+%\let\oldsection\section
+%\def\section{\cleardoublepage\oldsection}
+%\newcommand{\sectionbreak}{\clearpage}
+%\usepackage{afterpage}
+%\newcommand\blankpage{%
+%    \null
+%    \thispagestyle{empty}%
+%    \addtocounter{page}{-1}%
+%    \newpage}
 
 
 \setcounter{totalnumber}{5}
@@ -39,7 +42,9 @@
 \renewcommand{\d}[1]{\ensuremath{\operatorname{d}\!{#1}}}
 \DeclareRobustCommand{\orderof}{\ensuremath{\mathcal{O}}}
 \setlength\parindent{24pt}
-\numberwithin{equation}{section}
+\numberwithin{equation}{chapter}
+\numberwithin{figure}{chapter}
+\numberwithin{table}{chapter}
 
 
 
@@ -127,13 +132,16 @@ Prof. Jacob \textsc{Linder} % Supervisor's Name
 %\date{\today}
 
 %\maketitle
-\afterpage{\blankpage}
+%\afterpage{\blankpage}
 \pagenumbering{roman}
 
-\section*{Summary}
+\chapter*{Summary}
 \newpage
 
-\section*{Preface}
+\chapter*{Sammendrag}
+\newpage
+
+\chapter*{Preface}
 %\\
 
 \begin{minipage}{0.95\textwidth}
@@ -149,38 +157,38 @@ Trondheim, Norway \\
 \tableofcontents
 
 \newpage
-\afterpage{\blankpage}
+%\afterpage{\blankpage}
 
 \pagenumbering{arabic}
 
-\section{Introduction}
+\chapter{Introduction}
 
-\section{Fundamental theory}
-%\subsection{Zeeman energy}
-%The Zeeman energy is the energy contribution from the interaction between the magnetization $\vec{M}(\vec{r})$ in the magnetic material and an external magnetic field $\vec{H}_Z(\vec{r})$. This energy can be expressed as
+\chapter{Fundamental theory}
+%\section{Zeeman energy}
+%The Zeeman energy is the energy contribution from the interaction between the magnetization $\mathbold{M}(\mathbold{r})$ in the magnetic material and an external magnetic field $\mathbold{H}_Z(\mathbold{r})$. This energy can be expressed as
 %\begin{align}
-%E_Z = -\mu_0\int \d V \vec{M}(\vec{r})\cdot\vec{H}_Z(\vec{r}),
+%E_Z = -\mu_0\int \d V \mathbold{M}(\mathbold{r})\cdot\mathbf{H}_Z(\mathbold{r}),
 %\end{align}
 %with $\mu_0$ being the vacuum permeability.
-\subsection{Exchange energy}
+\section{Exchange energy}
 Ferromagnetism occurs in materials where the spins tend to align with each other, and thereby being able to generate an observable magnetic field outside of the material. The mechanism behind this is the exchange interaction between the spins. In ferromagnetic materials the system can lower its energy by having parallel neighboring spins. This is described by the Heisenberg Hamiltonian,
 \begin{align}
-H = - J\sum_{\langle i,j\rangle} \vec{S}_i\cdot\vec{S}_j,
+H = - J\sum_{\langle i,j\rangle} \mathbold{S}_i\cdot\mathbold{S}_j,
 \end{align}
-with $J$ being the exchange integral which is positive for ferromagnetic materials and $\vec{S}$ a dimensionless spin-vector. The spins can be expressed in terms of the magnetization, which is the average magnetic moment. As the magnetic moment and the spin of an electron are anti-parallel, this relation becomes
+with $J$ being the exchange integral which is positive for ferromagnetic materials and $\mathbold{S}$ a dimensionless spin-vector. The spins can be expressed in terms of the magnetization, which is the average magnetic moment. As the magnetic moment and the spin of an electron are anti-parallel, this relation becomes
 \begin{align}
-\vec{S}_i = -\frac{S}{M_s}\vec{M}_i,
+\mathbold{S}_i = -\frac{S}{M_s}\mathbold{M}_i,
 \end{align}
 with $M_s$ being the saturation magnetization and $S$ the magnitude of the spin. The magnetization is a classical vector, and in micromagnetism it is treated as a slowly varying smooth function. One can therefore perform a Taylor expansion of it. By doing that, one can show \cite{Project} that the energy density can be written as
 \begin{align}
-\epsilon_{EX} = \frac{\textrm{d} E_{EX}}{\textrm{d} V} = -\frac{A}{M_s^2}\vec{M}(\vec{r})\vec{\nabla}^2\vec{M}(\vec{r}) = \frac{A}{M_s^2}\partial_i\vec{M}(\vec{r})\partial_i\vec{M}(\vec{r}), \label{eq:exchDensity}
+\epsilon_{EX} = \frac{\textrm{d} E_{EX}}{\textrm{d} V} = -\frac{A}{M_s^2}\mathbold{M}(\mathbold{r})\mathbold{\nabla}^2\mathbold{M}(\mathbold{r}) = \frac{A}{M_s^2}\partial_i\mathbold{M}(\mathbold{r})\partial_i\mathbold{M}(\mathbold{r}), \label{eq:exchDensity}
 \end{align}
 with $A$ being the exchange stiffness
 \begin{align}
 A = \frac{J S^2}{2a}
 \end{align}
 and $a$ being the lattice constant.
-\subsection{Perpendicular magnetic anisotropy}
+\section{Perpendicular magnetic anisotropy}
 In some magnetic materials we may have something known as magnetic anisotropy. As the name indicates, there is an anisotropy in the material that makes certain magnetization directions more energetically favorable than others. This mostly stems from the spin-orbit coupling. If one considers the restframe of the electron instead of the proton, the proton is orbiting the electron and thereby causing a temporal varying electric field. Amp\`{e}re's ciruital law then says that the electron observes a magnetic field proportional to the orbital motion of the proton. This magnetic field then interacts with the magnetic moment of the electron, which is proportional to the spin, hence the name spin-orbit coupling. Taking this into consideration as well as the atomic structure in the material, one can see that one could end up with a material where the magnetic field the electrons experience from the spin-orbit coupling would allow one direction to be easier magnetized than others.
 
 In some layered ultrathin film structures, such as Pd/Co \cite{Carcia1985}, it has been discovered that the magnetization has a lower energy when it is perpendicular to the films. This means that the easy axis of the material is perpendicular to the films, and we then have something called perpendicular magnetic anisotropy (PMA). The anisotropic energy is independent of the direction the magnetization has along the easy axis, meaning the energy is the same if the magnetization points into or out of the films. Letting $K$ be the anisotropy constant and $\theta$ the angle to the normal of the films, the anisotropic energy density can then be written as
@@ -188,77 +196,150 @@ In some layered ultrathin film structures, such as Pd/Co \cite{Carcia1985}, it h
 \epsilon_{PMA} = K\sin^2\theta \label{eq:PMADensity}
 \end{align} 
 to the lowest order in $\theta$. Here we have normalized the energy density in such a way that if the magnetization points along the easy axis the energy density is zero.
-\subsection{Voltage induced magnetic anisotropy}
-\subsection{Rashba spin-orbit coupling}
-In materials where the motion of the electrons is confined to a plane, and the inversion symmetry is broken along the axis perpendicular to that plane, there is a splitting of the spin energy levels. Inversion symmetry can for example be broken at the interface between two materials \cite{Heide2006}. The inversion asymmetry causes an electric field perpendicular to the plane of motion, as the gradient of the electrostatic potential becomes non-zero when inversion symmetry is broken ($V(\vec{r}) \neq V(-\vec{r})$). When particles move in an electric field, they experience a magnetic field which can be seen by performing a Lorentz transformation into the particles' restframe. This magnetic field is proportional to $\vec{v}\times\vec{E}$. Because of the magnetic field the energy levels become spin dependent, as the field couples to the spin. This is described by the Rashba Hamiltonian \citep{BychovRashba1984}
-\begin{align}
-H_R &= \frac{\alpha_R}{\hbar}\vec{\sigma}\cdot(\vec{p}\times\hat{n}) = \frac{\alpha_R}{\hbar}\sigma_i\varepsilon_{ijk}p_jn_k \\
-&= \frac{\alpha_R}{\hbar}\varepsilon_{kij}\sigma_ip_jn_k = \alpha_R (\vec{\sigma}\times\vec{k})\cdot\hat{n}.
-\end{align}
-Here $\alpha_R$ is the Rashba parameter, $\vec{p} = \hbar\vec{k}$ the momentum of the electrons, $\hat{n}$ a unit vector perpendicular to the plane of motion and $\vec{\sigma}$ is a vector of the Pauli matrices.
+\section{Voltage induced magnetic anisotropy}
 
-\subsection{The Dzyaloshinskii--Moriya interaction}
+\section{Rashba spin-orbit coupling}
+In materials where the motion of the electrons is confined to a plane, and the inversion symmetry is broken along the axis perpendicular to that plane, there is a splitting of the spin energy levels. Inversion symmetry can for example be broken at the interface between two materials \cite{Heide2006}. The inversion asymmetry causes an electric field perpendicular to the plane of motion, as the gradient of the electrostatic potential becomes non-zero when inversion symmetry is broken ($V(\mathbold{r}) \neq V(-\mathbold{r})$). When particles move in an electric field, they experience a magnetic field which can be seen by performing a Lorentz transformation into the particles' restframe. This magnetic field is proportional to $\mathbold{v}\times\mathbold{E}$. Because of the magnetic field the energy levels become spin dependent, as the field couples to the spin. This is described by the Rashba Hamiltonian \citep{BychovRashba1984}
+\begin{align}
+H_R &= \frac{\alpha_R}{\hbar}\mathbold{\sigma}\cdot(\mathbold{p}\times\mathbold{\hat{n}}) = \alpha_R (\mathbold{\sigma}\times\mathbold{k})\cdot\mathbold{\hat{n}}.
+\label{eq:RashbaH}
+\end{align}
+Here $\alpha_R$ is the Rashba parameter, $\mathbold{p} = \hbar\mathbold{k}$ the momentum of the electrons, $\mathbold{\hat{n}}$ a unit vector perpendicular to the plane of motion and $\mathbold{\sigma}$ is a vector of the Pauli matrices.
+
+\section{The Dzyaloshinskii--Moriya interaction}
 The Dzyaloshinskii--Moriya interaction (DMI) is an antisymmetric exchange coupling between spins, given by the Hamiltonian
 \begin{align}
-H_{DM} = \sum_{\langle i,j\rangle}\vec{D}_{ij}\cdot(\vec{S}_i\times\vec{S}_j). \label{eq:DMIHamiltonian}
+H_{DM} = \sum_{\langle i,j\rangle}\mathbold{D}_{ij}\cdot(\mathbold{S}_i\times\mathbold{S}_j). \label{eq:DMIHamiltonian}
 \end{align}
-This interaction only occurs in materials where the inversion symmetry is broken. The magnitude of $\vec{D}_{ij}$ depends on the material properties, and the direction of $\vec{D}_{ij}$ depends on the symmetry of the atomic structure in the material. Moriya showed \cite{Moriya1960} that if there is an $n$-fold axis (with $n \geq 2$) along the axis between the particles with spins $\vec{S}_i$ and $\vec{S}_j$, $\vec{D}_{ij}$ will be parallel to that axis. Using that in a Taylor expansion of \eqref{eq:DMIHamiltonian}, it can be shown that the energy density becomes
+This interaction only occurs in materials where the inversion symmetry is broken. The magnitude of $\mathbold{D}_{ij}$ depends on the material properties, and the direction of $\mathbold{D}_{ij}$ depends on the symmetry of the atomic structure in the material. Moriya showed \cite{Moriya1960} that if there is an $n$-fold axis (with $n \geq 2$) along the axis between the particles with spins $\mathbold{S}_i$ and $\mathbold{S}_j$, $\mathbold{D}_{ij}$ will be parallel to that axis. Using that in a Taylor expansion of \eqref{eq:DMIHamiltonian}, it can be shown that the energy density becomes
 \begin{align}
-\epsilon_{DM}^{\textrm{(bulk)}} = \frac{D}{M_s^2}\vec{M}\cdot(\vec{\nabla}\times\vec{M}).
+\epsilon_{DM}^{\textrm{(bulk)}} = \frac{D}{M_s^2}\mathbold{M}\cdot(\mathbold{\nabla}\times\mathbold{M}).
 \end{align}
-On the other hand, if there is a mirror plane located at the center of the line between the particles with spins $\vec{S}_i$ and $\vec{S}_j$ that is perpendicular to the axis intersecting them, the vector $\vec{D}_{ij}$ lies in the mirror plane. In a more specific case where the interaction between the spins $\vec{S}_i$ and $\vec{S}_j$ is mediated by a third magnetic particle (different from the other two) located in the mirror plane, $\vec{D}_{ij}$ is perpendicular to the triangle spanned by the three particles. Assuming the magnetic particles with spins $\vec{S}_i$ and $\vec{S}_j$ are located in the $xy$-plane, and that the mediating magnetic particle of a different type lies above them, a Taylor expansion of \eqref{eq:DMIHamiltonian} yields the energy density
+On the other hand, if there is a mirror plane located at the center of the line between the particles with spins $\mathbold{S}_i$ and $\mathbold{S}_j$ that is perpendicular to the axis intersecting them, the vector $\mathbold{D}_{ij}$ lies in the mirror plane. In a more specific case where the interaction between the spins $\mathbold{S}_i$ and $\mathbold{S}_j$ is mediated by a third magnetic particle (different from the other two) located in the mirror plane, $\mathbold{D}_{ij}$ is perpendicular to the triangle spanned by the three particles as illustrated in Figure \ref{fig:InterfacialDMI}. Assuming the magnetic particles with spins $\mathbold{S}_i$ and $\mathbold{S}_j$ are located in the $xy$-plane, and that the mediating magnetic particle of a different type lies above them, a Taylor expansion of \eqref{eq:DMIHamiltonian} yields the energy density
 \begin{align}
-\epsilon_{DM}^{\textrm{(interface)}} = \frac{D}{M_s^2}\left[M_z(\vec{\nabla}\cdot\vec{M})-(\vec{M}\cdot\vec{\nabla})M_z\right].
+\label{eq:DMInterface}
+\epsilon_{DM}^{\textrm{(interface)}} = \frac{D}{M_s^2}\left[M_z(\mathbold{\nabla}\cdot\mathbold{M})-(\mathbold{M}\cdot\mathbold{\nabla})M_z\right].
+\end{align}
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=0.6\textwidth]{Figures/InterfacialDMI.pdf} 
+\caption{An illustration of the geometry of an interfacial DMI. The antisymmetric interaction between the spins $\mathbold{S}_i$ and $\mathbold{S}_j$ is mediated by a third magnetic particle in blue. The direction of $\mathbold{D}_{ij}$ is then perpendicular to the plane spanned by the three particles.}
+\label{fig:InterfacialDMI} 
+\end{center}
+\end{figure}
+The observant reader may have noticed that both the Rashba spin-orbit coupling and Dzyaloshinskii-Moriya interaction occur in materials with inversion asymmetry. Dzyaloshinskii first introduced DMI based on a phenemenological reasoning \citep{Dzyaloshinskii1958} to describe what had been observed experimentally, and Moriya later proposed that the microscopic mechanism behind this was spin-orbit coupling \cite{Moriya1960}. In thin-film system it is then reasonable to assume that Rashba spin-orbit coupling can be the mechanism behind DMI. This was in fact shown mathematically by Kim \textit{et al.} \citep{DMIfromRashba_Kim}. They started with the model Hamiltonian
+\begin{align}
+H = H_{\textrm{kin}} + H_R + H_E = \frac{\mathbold{p}^2}{2m_e} + \frac{\alpha_R}{\hbar}\mathbold{\sigma}\cdot(\mathbold{p}\times\mathbold{\hat{n}}) + J\sigma\cdot\mathbold{\hat{M}}
+\end{align}
+that includes the kinetic energy of electrons confined to a plane, a Rashba spin-orbit coupling and the symmetric exchange energy between the spins. A unitary transformation was then performed on the Hamiltonian to remove the first order dependence of the Rashba effect, so that the transformed Hamiltonian could be written as $H' = U^{\dagger} H U = H_{\textrm{kin}} + H_E' + \orderof(\alpha_R^2)$. This unitary transformation, defined by
+\begin{align}
+U = \exp\left[-i\frac{\alpha_R m_e}{\hbar^2}\mathbold{\sigma}\cdot(\mathbold{r}\times\mathbold{\hat{n}})\right],
+\end{align}
+does not change the eigenvalues of the system, and the physics in the transformed Hamiltonian is therefore the same as the original model Hamiltonian. It was then shown that the transformed symmetric exchange energy included an interfacial DMI term with the strength of the parameter $D$ being
+\begin{align}
+D = \frac{4\alpha_Rm_e A}{\hbar^2}.
 \end{align}
 
-\subsection{Skyrmions}
+\section{Magnons}
+
+\section{Skyrmions}
+In certain types of materials, such as chiral magnets, an exotic magnetization pattern has been found to occur. This magnetization pattern, known as a skyrmion, is a vortex-like magnetization structure with non-trivial topology. The magnetization of the skyrmion wraps around the unit sphere, meaning that it has a non-zero skyrmion number \cite{Heinze2011}
+\begin{align}
+\label{eq:SkyrmionNumber}
+N_{\textrm{sk}} = \frac{1}{4\pi}\int \mathbold{\hat{M}}\cdot(\partial_x \mathbold{\hat{M}} \times \partial_y \mathbold{\hat{M}}) \d x \d y.
+\end{align}
+Skyrmions have an integer skyrmion number, while vortices have a half-integer skyrmion number \cite{Tretiakov2007}. The magnetization of the skyrmion can be written in cartesian coordinates as
+\begin{align}
+\label{eq:SkyrmionMVec}
+\mathbold{M}(\rho, \phi) = M_s
+\begin{pmatrix}
+\cos\Phi(\phi)\sin\theta(\rho) \\ \sin\Phi(\phi)\sin\theta(\rho) \\ \cos\theta(\rho)
+\end{pmatrix}.
+\end{align}
+As the out-of-plane component (here the $z$-component) of the magnetization in the skyrmion is rotationally symmetric around the skyrmion's core, the out-of-plane angle $\theta$ can be written as a function of $\rho$ only, with $\rho$ being the distance to the skyrmion's core. The in-plane magnetization angle $\Phi$ is assumed to be a linear function of the azimuthal angle $\phi$, such that
+\begin{align}
+\Phi = m\phi + \psi.
+\end{align}
+Due to the periodical nature of the angles, $m$ is constrained to be an integer. The phase difference $\psi$ between $\Phi$ and $\phi$ is a constant called the helicity of the skyrmion. If one plugs in the ansatz \eqref{eq:SkyrmionMVec} into \eqref{eq:SkyrmionNumber}, one finds that
+\begin{align}
+N_{\textrm{sk}} = \frac{m}{4\pi}\int_0^{2\pi}\d\phi \int_0^{\infty}\d \rho \sin\theta(\rho) \frac{\partial\theta(\rho)}{\partial\rho} = - \frac{m}{2} \cos(\theta(\rho))|_{(\rho = 0)}^{(\rho=\infty)}.
+\end{align}
+Unless $m$ is an even number, one must require that $\theta(\rho = 0) = 0$ and $\theta(\rho = \infty) = \pi$, or $\theta(\rho = 0) = \pi$ and $\theta(\rho = \infty) = 0$ for the skyrmion number to be an integer and not a half-integer.
+
+The skyrmion needs a certain type of physical mechanism in the material to be a stable state. One of these mechanisms is the Dzyaloshinskii--Moriya interaction, which is the stabilizing mechanism of skyrmions we will consider in this thesis. Other mechanisms that can also cause the magnetic skyrmion to be a stable state are long-ranged magnetic dipolar interactions \cite{Lin1973}, frustrated exchange interactions \cite{Okubo2012} or four-spin exchange interactions \cite{Heinze2011}. If we consider the interfacial DMI energy density in \eqref{eq:DMInterface} and plug in our ansatz for the magnetization of the skyrmion, one finds that
+\begin{align}
+\epsilon_{DM}^{\textrm{(interface)}} = D\cos((m-1)\phi + \psi)\left(\frac{\partial\theta}{\partial\rho} + \frac{m}{\rho}\sin\theta\cos\theta\right).
+\end{align}
+For the DMI to have a net energy contribution, we must remove the dependence on $\phi$ as the average of a harmonic function over the plane will be zero. We therefore require that $m = 1$, which is not an even number, meaning we must apply the boundary conditions for $\theta(\rho)$ mentioned earlier. The helicity $\psi$ is then chosen to minimize the energy contribution from DMI, which leaves us with the two options $\psi = 0$ and $\psi = \pi$, depending on the sign of $D$. Due to the boundary conditions for $\theta$, the magnetization in the core of the skyrmion points in the opposite direction of the magnetization far away from the skyrmion core. The magnetization direction far away from the core must therefore be a stable direction in the energy. This can be done in a system with an easy axis parallel to that direction. If we consider a skyrmion in a thin film, which makes sense with our choice of interfacial DMI, the easy axis must be perpendicular to that film. In other words, we need a thin-film system with perpendicular magnetic anisotropy. Finally, as our system is ferromagnetic, we also need to include the symmetric exchange interaction. This is also necessary if we want to treat the skyrmion in the micromagnetic model, where we assume that the magnetization can be estimated by a smooth function. This assumption was for example used in the Taylor expansion of the DMI Hamiltonian. Our model then has the energy density given by
+\begin{align}
+\nonumber \epsilon &= \epsilon_E + \epsilon_{PMA} + \epsilon_{DM}^{\textrm{(interface)}} \\
+&=A \left[\left(\frac{\partial\theta}{\partial\rho}\right)^2 + \frac{\sin^2\theta}{\rho^2}\right] + K\sin^2\theta + D\cos\psi\left(\frac{\partial\theta}{\partial\rho} + \frac{m}{\rho}\sin\theta\cos\theta\right),
+\end{align}
+assuming a magnetization profile given by \eqref{eq:SkyrmionMVec}. The energy is independent of $\phi$ due to our choice of $m$, but it remains a function of $\theta$ and $\rho$. As the skyrmion is a ground state, we can find the function $\theta(\rho)$ by minimizing the energy. Using the condition
+\begin{align}
+\frac{\delta\epsilon(\theta, \rho)}{\delta\theta(\rho)} = \frac{\partial\epsilon}{\partial\theta} - \frac{\textrm{d}}{\textrm{d}\rho} \frac{\partial\epsilon}{\partial (\frac{\partial\theta}{\partial \rho})} = 0
+\end{align}
+and introducing the dimensionless length $\tilde{\rho} = \rho D/A$, one ends up with the following differential equation for $\theta(\rho)$:
+\begin{align}
+\label{eq:ODEtheta}
+\frac{\partial^2\theta}{\partial\tilde{\rho}^2} + \frac{1}{\tilde{\rho}}\frac{\partial\theta}{\partial\tilde{\rho}} - \frac{\sin\theta\cos\theta}{\tilde{\rho}^2}+\cos\psi\frac{\sin^2\theta}{\tilde{\rho}}-\frac{AK}{D^2}\sin\theta\cos\theta = 0.
+\end{align}
+Definining the ratio $AK/D^2$ as a parameter $C$, one can solve this equation numerically for a given $C$. Some numerical solutions are shown in Figure \ref{fig:ThetaProfile} when the boundary conditions $\theta(\rho = 0) = \pi$ and $\theta(\rho = \infty)$ have been used. It should be noted that this differential equation only has a solution when $\cos\psi = INSERT CORRECT VALUE$ for the chosen boundary conditions. The solutions for the different helicities $\psi_1 = BLA$ and $\psi_2 = BLA2$ have a simple relation, however. This relation can be verified to be
+\begin{align}
+\theta_{\psi_1}(\rho) = \pi - \theta_{\psi_2}(\rho),
+\end{align}
+as $\cos\psi$ is antisymmetric under a swap in helicities, and $\frac{\partial^2\theta}{\partial\tilde{\rho}^2}$, $\frac{\partial\theta}{\partial\tilde{\rho}}$, $\cos\theta_{\psi_i}$ are all antisymmetric under the relation above.
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[width=0.6\textwidth]{Figures/SkyrmionRadialProfiles.pdf} 
 \caption{The solution of the out-of-plane angle $\theta$ of the skyrmion profile for different values of $C$.}
-\label{fig:dipole_field} 
+\label{fig:ThetaProfile} 
 \end{center}
 \end{figure}
+The two different skyrmions for the two different choices in helicities $\psi$ are illustrated in Figure \ref{fig:HedgehogSkyrmions}. This type of skyrmions is called a hedgehog skyrmion, due to the magnetization pattern that curves into or away from the core.
 \begin{figure}[h!]
 \centering
 \begin{subfigure}{.49\textwidth}
   \centering
   \includegraphics[width=\linewidth]{Figures/HedgehogSkyrmionPsi0.pdf}
   \caption{}
-  \label{fig:ThetaBulk}
+  \label{fig:HedgehogSkyrmion1}
 \end{subfigure}
 \begin{subfigure}{.49\textwidth}
   \centering
   \includegraphics[width=\linewidth]{Figures/HedgehogSkyrmionPsiPi.pdf}
   \caption{}
-  \label{fig:ThetaInt}
+  \label{fig:HedgehogSkyrmion2}
 \end{subfigure}
 \caption{A hedgehog skyrmion with a helicity (a) $\psi = 0$ and (b) $\psi = \pi$. The in-plane component of the magnetization is visualized by the vectors, while the $z$-component is shown in the background color.}
-\label{fig:ThetaRho}
+\label{fig:HedgehogSkyrmions}
 \end{figure}
-\section{Magnetization dynamics}
+\chapter{Magnetization dynamics}
+\section{The Landau--Lifshitz--Gilbert equation}
+\section{Symmetries}
+\section{The Thiele equation}
 
-\section{The Model}
+\chapter{Electric control of skyrmion motion}
 \begin{align}
-\nonumber \frac{\partial \vec{M}}{\partial t} &= -\gamma'\vec{M}\times(\vec{H}_{\text{eff}}+\vec{H}_R-\frac{\beta}{M_s} \vec{M}\times\vec{H}_R) \\
-&\hspace{4.5mm}+\frac{\alpha}{M_s}\vec{M}\times\frac{\partial\vec{M}}{\partial t} + b_J (\hat{j}_e\cdot\vec{\nabla})\vec{M} - \beta b_J \vec{M}\times(\hat{j}_e\cdot\vec{\nabla})\vec{M}, \\
-\vec{H}_R &= \frac{\alpha_R m_e}{\hbar \mu_B}b_J (\hat{z}\times\hat{j}_e) = C_R b_J (\hat{z}\times\hat{j}_e).
+\nonumber \frac{\partial \mathbold{M}}{\partial t} &= -\gamma'\mathbold{M}\times(\mathbold{H}_{\text{eff}}+\mathbold{H}_R-\frac{\beta}{M_s} \mathbold{M}\times\mathbold{H}_R) \\
+&\hspace{4.5mm}+\frac{\alpha}{M_s}\mathbold{M}\times\frac{\partial\mathbold{M}}{\partial t} + b_J (\mathbold{\hat{j}}_e\cdot\mathbold{\nabla})\mathbold{M} - \beta b_J \mathbold{M}\times(\mathbold{\hat{j}}_e\cdot\mathbold{\nabla})\mathbold{M}, \\
+\mathbold{H}_R &= \frac{\alpha_R m_e}{\hbar \mu_B}b_J (\mathbold{\hat{z}}\times\mathbold{\hat{j}}_e) = C_R b_J (\mathbold{\hat{z}}\times\mathbold{\hat{j}}_e).
 \end{align}
 \begin{align}
-\vec{F}_R &= -\mu_0\int \d V\sum_k (\vec{\nabla}M_k)\left[\vec{H}_R - \frac{\beta}{M_s}\vec{M}\times\vec{H}_R\right]_k \\
-&= -\mu_0 \pi\beta C_R b_J M_s d \int_0^{\infty} \d r \left(\frac{\partial \theta}{\partial r} r + \sin\theta\cos\theta \right) \hat{x} \\
-&\hspace{4.5mm}- \mu_0 \pi C_R b_J M_s d \int_0^{\infty} \d r \left(r\frac{\partial \theta}{\partial r}\cos\theta + \sin\theta\right) \hat{y} \\
-&= -\mu_0 \pi\beta C_R b_J M_s d \int_0^{\infty} \d r \left(\frac{\partial \theta}{\partial r} r + \sin\theta\cos\theta \right) \hat{x}.
+\mathbold{F}_R &= -\mu_0\int \d V\sum_k (\mathbold{\nabla}M_k)\left[\mathbold{H}_R - \frac{\beta}{M_s}\mathbold{M}\times\mathbold{H}_R\right]_k \\
+&= -\mu_0 \pi\beta C_R b_J M_s d \int_0^{\infty} \d r \left(\frac{\partial \theta}{\partial r} r + \sin\theta\cos\theta \right) \mathbold{\hat{x}} \\
+&\hspace{4.5mm}- \mu_0 \pi C_R b_J M_s d \int_0^{\infty} \d r \left(r\frac{\partial \theta}{\partial r}\cos\theta + \sin\theta\right) \mathbold{\hat{y}} \\
+&= -\mu_0 \pi\beta C_R b_J M_s d \int_0^{\infty} \d r \left(\frac{\partial \theta}{\partial r} r + \sin\theta\cos\theta \right) \mathbold{\hat{x}}.
 \end{align}
 \begin{align}
 \int_0^{\infty} \d r \sin\theta(r) = r\sin\theta(r)|_{r = 0}^{r=\infty} - \int_0^{\infty} \d r r \frac{\partial \theta}{\partial r} \cos\theta(r) \\
 \int_0^{\infty} \d r \left(r\frac{\partial \theta}{\partial r}\cos\theta + \sin\theta\right) = r\sin\theta(r)|_{r = 0}^{r=\infty} = 0.
 \end{align}
 \begin{align}
-\epsilon_{EF} = \eta E(\vec{r}) \left(1-m_z^2\right) = \eta E(\vec{r}) \sin^2\theta.
+\epsilon_{EF} = \eta E(\mathbold{r}) \left(1-m_z^2\right) = \eta E(\mathbold{r}) \sin^2\theta.
 \end{align}
 \begin{align}
-E(\vec{r}) &= E_x x + E_y y \\
+E(\mathbold{r}) &= E_x x + E_y y \\
 &= E_x x_0 + E_y y_0 + E_x r \cos\phi + E_y r \sin\phi.
 \end{align}
 \begin{align}
@@ -267,14 +348,14 @@ U_{EF} &= \int \d V \epsilon_{EF} \\
 &= 2\pi\eta d\left(E_x x_0 + E_y y_0\right)\int_0^{\infty}\d r r \sin^2\theta.
 \end{align}
 \begin{align}
-\vec{F}_E &= -\vec{\nabla}U_{EF} \\
-&= -2\pi \eta d \left(E_x \hat{x} + E_y \hat{y}\right) \int_0^{\infty}\d r r \sin^2\theta.
+\mathbold{F}_E &= -\mathbold{\nabla}U_{EF} \\
+&= -2\pi \eta d \left(E_x \mathbold{\hat{x}} + E_y \mathbold{\hat{y}}\right) \int_0^{\infty}\d r r \sin^2\theta.
 \end{align}
 \begin{align}
-\vec{F}_R+\vec{F}_E + \vec{G} \times\left(\vec{v}+b_J\hat{j}_e\right) + D\left(\alpha\vec{v}+\beta b_J \hat{j}_e\right) = 0.
+\mathbold{F}_R+\mathbold{F}_E + \mathbold{G} \times\left(\mathbold{v}+b_J\mathbold{\hat{j}}_e\right) + D\left(\alpha\mathbold{v}+\beta b_J \mathbold{\hat{j}}_e\right) = 0.
 \end{align}
 \begin{align}
-\vec{G} &= \frac{2\pi M_s\mu_0 d}{\gamma'}\left[\cos\theta\right]_{\theta(r=0)}^{\theta(r=\infty)} \hat{z}\\
+\mathbold{G} &= \frac{2\pi M_s\mu_0 d}{\gamma'}\left[\cos\theta\right]_{\theta(r=0)}^{\theta(r=\infty)} \mathbold{\hat{z}}\\
 D &= - \frac{\pi M_s \mu_0 d}{\gamma '} \int_0^{\infty} \d r \left(r\left(\frac{\partial \theta}{\partial r}\right)^2+\frac{\sin^2\theta}{r}\right).
 \end{align}
 \begin{align}
@@ -288,7 +369,10 @@ C_E &= \frac{\gamma' \eta}{2\mu_0 M_s}\int_0^{\infty}\d r r\sin^2\theta.
 \dot{x}_0 &= - \frac{1+\alpha_C\beta_C + R}{1+\alpha_C^2}b_J + \frac{C_E}{1+\alpha_C^2}E_y - \frac{\alpha_C C_E}{1+\alpha_C^2}E_x, \\
 \dot{y}_0 &= \frac{\alpha_C-\beta_C - R}{1+\alpha_C^2}b_J - \frac{C_E}{1+\alpha_C^2}E_x - \frac{\alpha_C C_E}{1+\alpha_C^2}E_y.
 \end{align}
-\section{Conclusion}
+
+\chapter{Magnon induced skyrmion motion}
+
+\chapter{Conclusion}
 
 \bibliography{thesis}
 \bibliographystyle{unsrt}
