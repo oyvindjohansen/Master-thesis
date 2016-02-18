@@ -3,7 +3,8 @@
 \usepackage[T1]{fontenc} 						% Vise norske tegn.
 \usepackage[margin=2.5cm]{geometry}
 %Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
-\usepackage[Bjornstrup]{fncychap}
+%\usepackage[Bjornstrup]{fncychap}
+\usepackage[grey]{quotchap}
 % \usepackage[latin1]{inputenc}		% Velger tengsettet i dette dokumentet			
 \usepackage[english]{babel}		
 \usepackage[utf8]{inputenc}
@@ -32,7 +33,12 @@
 %    \thispagestyle{empty}%
 %    \addtocounter{page}{-1}%
 %    \newpage}
-
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[EL]{\nouppercase\leftmark}
+\fancyhead[OR]{\nouppercase\rightmark}
+\fancyhead[ER,OL]{\thepage}
 
 \setcounter{totalnumber}{5}
 \renewcommand{\textfraction}{0.05}
@@ -84,7 +90,8 @@
 %----------------------------------------------------------------------------------------
 
 \HRule \\[0.4cm]
-{ \huge \bfseries The dynamics of skyrmions in an electric field}\\[0.4cm] % Title of your document
+%{ \huge \bfseries The dynamics of skyrmions in an electric field}\\[0.4cm] % Title of your document
+{ \huge \bfseries Control of skyrmion motion via current and inhomogeneous electric fields in thin-film Dzyaloshinskii-Moriya ferromagnets with Rashba spin-orbit coupling}\\[0.4cm]
 \HRule \\[1.5cm]
  
 %----------------------------------------------------------------------------------------
@@ -135,13 +142,16 @@ Prof. Jacob \textsc{Linder} % Supervisor's Name
 %\afterpage{\blankpage}
 \pagenumbering{roman}
 
-\chapter*{Summary}
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
 \newpage
 
 \chapter*{Sammendrag}
+\addcontentsline{toc}{chapter}{Sammendrag}
 \newpage
 
 \chapter*{Preface}
+\addcontentsline{toc}{chapter}{Preface}
 %\\
 
 \begin{minipage}{0.95\textwidth}
@@ -170,7 +180,8 @@ Trondheim, Norway \\
 %E_Z = -\mu_0\int \d V \mathbold{M}(\mathbold{r})\cdot\mathbf{H}_Z(\mathbold{r}),
 %\end{align}
 %with $\mu_0$ being the vacuum permeability.
-\section{Exchange energy}
+\section{Energy terms in micromagnetics}
+\subsection{Exchange energy}
 Ferromagnetism occurs in materials where the spins tend to align with each other, and thereby being able to generate an observable magnetic field outside of the material. The mechanism behind this is the exchange interaction between the spins. In ferromagnetic materials the system can lower its energy by having parallel neighboring spins. This is described by the Heisenberg Hamiltonian,
 \begin{align}
 H = - J\sum_{\langle i,j\rangle} \mathbold{S}_i\cdot\mathbold{S}_j,
@@ -188,7 +199,7 @@ with $A$ being the exchange stiffness
 A = \frac{J S^2}{2a}
 \end{align}
 and $a$ being the lattice constant.
-\section{Perpendicular magnetic anisotropy}
+\subsection{Perpendicular magnetic anisotropy}
 In some magnetic materials we may have something known as magnetic anisotropy. As the name indicates, there is an anisotropy in the material that makes certain magnetization directions more energetically favorable than others. This mostly stems from the spin-orbit coupling. If one considers the restframe of the electron instead of the proton, the proton is orbiting the electron and thereby causing a temporal varying electric field. Amp\`{e}re's ciruital law then says that the electron observes a magnetic field proportional to the orbital motion of the proton. This magnetic field then interacts with the magnetic moment of the electron, which is proportional to the spin, hence the name spin-orbit coupling. Taking this into consideration as well as the atomic structure in the material, one can see that one could end up with a material where the magnetic field the electrons experience from the spin-orbit coupling would allow one direction to be easier magnetized than others.
 
 In some layered ultrathin film structures, such as Pd/Co \cite{Carcia1985}, it has been discovered that the magnetization has a lower energy when it is perpendicular to the films. This means that the easy axis of the material is perpendicular to the films, and we then have something called perpendicular magnetic anisotropy (PMA). The anisotropic energy is independent of the direction the magnetization has along the easy axis, meaning the energy is the same if the magnetization points into or out of the films. Letting $K$ be the anisotropy constant and $\theta$ the angle to the normal of the films, the anisotropic energy density can then be written as
@@ -196,9 +207,10 @@ In some layered ultrathin film structures, such as Pd/Co \cite{Carcia1985}, it h
 \epsilon_{PMA} = K\sin^2\theta \label{eq:PMADensity}
 \end{align} 
 to the lowest order in $\theta$. Here we have normalized the energy density in such a way that if the magnetization points along the easy axis the energy density is zero.
-\section{Voltage induced magnetic anisotropy}
 
-\section{Rashba spin-orbit coupling}
+\subsection{Voltage induced magnetic anisotropy}
+
+\subsection{Rashba spin-orbit coupling}
 In materials where the motion of the electrons is confined to a plane, and the inversion symmetry is broken along the axis perpendicular to that plane, there is a splitting of the spin energy levels. Inversion symmetry can for example be broken at the interface between two materials \cite{Heide2006}. The inversion asymmetry causes an electric field perpendicular to the plane of motion, as the gradient of the electrostatic potential becomes non-zero when inversion symmetry is broken ($V(\mathbold{r}) \neq V(-\mathbold{r})$). When particles move in an electric field, they experience a magnetic field which can be seen by performing a Lorentz transformation into the particles' restframe. This magnetic field is proportional to $\mathbold{v}\times\mathbold{E}$. Because of the magnetic field the energy levels become spin dependent, as the field couples to the spin. This is described by the Rashba Hamiltonian \citep{BychovRashba1984}
 \begin{align}
 H_R &= \frac{\alpha_R}{\hbar}\mathbold{\sigma}\cdot(\mathbold{p}\times\mathbold{\hat{n}}) = \alpha_R (\mathbold{\sigma}\times\mathbold{k})\cdot\mathbold{\hat{n}}.
@@ -206,7 +218,7 @@ H_R &= \frac{\alpha_R}{\hbar}\mathbold{\sigma}\cdot(\mathbold{p}\times\mathbold{
 \end{align}
 Here $\alpha_R$ is the Rashba parameter, $\mathbold{p} = \hbar\mathbold{k}$ the momentum of the electrons, $\mathbold{\hat{n}}$ a unit vector perpendicular to the plane of motion and $\mathbold{\sigma}$ is a vector of the Pauli matrices.
 
-\section{The Dzyaloshinskii--Moriya interaction}
+\subsection{The Dzyaloshinskii--Moriya interaction}
 The Dzyaloshinskii--Moriya interaction (DMI) is an antisymmetric exchange coupling between spins, given by the Hamiltonian
 \begin{align}
 H_{DM} = \sum_{\langle i,j\rangle}\mathbold{D}_{ij}\cdot(\mathbold{S}_i\times\mathbold{S}_j). \label{eq:DMIHamiltonian}
@@ -229,9 +241,9 @@ On the other hand, if there is a mirror plane located at the center of the line 
 \end{figure}
 The observant reader may have noticed that both the Rashba spin-orbit coupling and Dzyaloshinskii-Moriya interaction occur in materials with inversion asymmetry. Dzyaloshinskii first introduced DMI based on a phenemenological reasoning \citep{Dzyaloshinskii1958} to describe what had been observed experimentally, and Moriya later proposed that the microscopic mechanism behind this was spin-orbit coupling \cite{Moriya1960}. In thin-film system it is then reasonable to assume that Rashba spin-orbit coupling can be the mechanism behind DMI. This was in fact shown mathematically by Kim \textit{et al.} \citep{DMIfromRashba_Kim}. They started with the model Hamiltonian
 \begin{align}
-H = H_{\textrm{kin}} + H_R + H_E = \frac{\mathbold{p}^2}{2m_e} + \frac{\alpha_R}{\hbar}\mathbold{\sigma}\cdot(\mathbold{p}\times\mathbold{\hat{n}}) + J\sigma\cdot\mathbold{\hat{M}}
+H = H_{\textrm{kin}} + H_R + H_E = \frac{\mathbold{p}^2}{2m_e} + \frac{\alpha_R}{\hbar}\mathbold{\sigma}\cdot(\mathbold{p}\times\mathbold{\hat{n}}) + J\mathbold{\sigma}\cdot\mathbold{\hat{M}}
 \end{align}
-that includes the kinetic energy of electrons confined to a plane, a Rashba spin-orbit coupling and the symmetric exchange energy between the spins. A unitary transformation was then performed on the Hamiltonian to remove the first order dependence of the Rashba effect, so that the transformed Hamiltonian could be written as $H' = U^{\dagger} H U = H_{\textrm{kin}} + H_E' + \orderof(\alpha_R^2)$. This unitary transformation, defined by
+that includes the kinetic energy of electrons confined to a plane, a Rashba spin-orbit coupling and the symmetric exchange energy between the spins. A unitary transformation was then performed on the Hamiltonian to remove the explicit Rashba Hamiltonian from the model, so that the transformed Hamiltonian could be written as $H' = U^{\dagger} H U = H_{\textrm{kin}} + H_E' + \orderof(\alpha_R^2)$. This unitary transformation, defined by
 \begin{align}
 U = \exp\left[-i\frac{\alpha_R m_e}{\hbar^2}\mathbold{\sigma}\cdot(\mathbold{r}\times\mathbold{\hat{n}})\right],
 \end{align}
@@ -239,8 +251,6 @@ does not change the eigenvalues of the system, and the physics in the transforme
 \begin{align}
 D = \frac{4\alpha_Rm_e A}{\hbar^2}.
 \end{align}
-
-\section{Magnons}
 
 \section{Skyrmions}
 In certain types of materials, such as chiral magnets, an exotic magnetization pattern has been found to occur. This magnetization pattern, known as a skyrmion, is a vortex-like magnetization structure with non-trivial topology. The magnetization of the skyrmion wraps around the unit sphere, meaning that it has a non-zero skyrmion number \cite{Heinze2011}
@@ -266,11 +276,11 @@ N_{\textrm{sk}} = \frac{m}{4\pi}\int_0^{2\pi}\d\phi \int_0^{\infty}\d \rho \sin\
 \end{align}
 Unless $m$ is an even number, one must require that $\theta(\rho = 0) = 0$ and $\theta(\rho = \infty) = \pi$, or $\theta(\rho = 0) = \pi$ and $\theta(\rho = \infty) = 0$ for the skyrmion number to be an integer and not a half-integer.
 
-The skyrmion needs a certain type of physical mechanism in the material to be a stable state. One of these mechanisms is the Dzyaloshinskii--Moriya interaction, which is the stabilizing mechanism of skyrmions we will consider in this thesis. Other mechanisms that can also cause the magnetic skyrmion to be a stable state are long-ranged magnetic dipolar interactions \cite{Lin1973}, frustrated exchange interactions \cite{Okubo2012} or four-spin exchange interactions \cite{Heinze2011}. If we consider the interfacial DMI energy density in \eqref{eq:DMInterface} and plug in our ansatz for the magnetization of the skyrmion, one finds that
+The skyrmion needs a certain type of physical mechanism in the material to be a stable state. This mechanism will allow a lower energy state by having the neighbouring spins not be entirely parallel to each other, like the symmetric exchange interaction wants them to be. One of these mechanisms is the Dzyaloshinskii--Moriya interaction, which is the stabilizing mechanism of skyrmions we will consider in this thesis. Other mechanisms that can also cause the magnetic skyrmion to be a stable state are long-ranged magnetic dipolar interactions \cite{Lin1973}, frustrated exchange interactions \cite{Okubo2012} and four-spin exchange interactions \cite{Heinze2011}. If we consider the interfacial DMI energy density in \eqref{eq:DMInterface} and plug in our ansatz for the magnetization of the skyrmion, one finds that
 \begin{align}
 \epsilon_{DM}^{\textrm{(interface)}} = D\cos((m-1)\phi + \psi)\left(\frac{\partial\theta}{\partial\rho} + \frac{m}{\rho}\sin\theta\cos\theta\right).
 \end{align}
-For the DMI to have a net energy contribution, we must remove the dependence on $\phi$ as the average of a harmonic function over the plane will be zero. We therefore require that $m = 1$, which is not an even number, meaning we must apply the boundary conditions for $\theta(\rho)$ mentioned earlier. The helicity $\psi$ is then chosen to minimize the energy contribution from DMI, which leaves us with the two options $\psi = 0$ and $\psi = \pi$, depending on the sign of $D$. Due to the boundary conditions for $\theta$, the magnetization in the core of the skyrmion points in the opposite direction of the magnetization far away from the skyrmion core. The magnetization direction far away from the core must therefore be a stable direction in the energy. This can be done in a system with an easy axis parallel to that direction. If we consider a skyrmion in a thin film, which makes sense with our choice of interfacial DMI, the easy axis must be perpendicular to that film. In other words, we need a thin-film system with perpendicular magnetic anisotropy. Finally, as our system is ferromagnetic, we also need to include the symmetric exchange interaction. This is also necessary if we want to treat the skyrmion in the micromagnetic model, where we assume that the magnetization can be estimated by a smooth function. This assumption was for example used in the Taylor expansion of the DMI Hamiltonian. Our model then has the energy density given by
+For the DMI to have a net energy contribution, we must remove the dependence on $\phi$ as the average of a harmonic function over the plane will be zero. We therefore require that $m = 1$, which is not an even number, meaning we must apply the boundary conditions for $\theta(\rho)$ mentioned earlier. The helicity $\psi$ is then chosen to minimize the energy contribution from DMI, which leaves us with the two options $\psi = 0$ and $\psi = \pi$, depending on the sign of $D$ and the $\theta$ profile. Due to the boundary conditions for $\theta$, the magnetization in the core of the skyrmion points in the opposite direction of the magnetization far away from the skyrmion core. The magnetization direction far away from the core must therefore be a stable direction in the energy. This can be done in a system with an easy axis parallel to that direction. If we consider a skyrmion in a thin film, which makes sense with our choice of interfacial DMI, the easy axis must be perpendicular to that film. In other words, we need a thin-film system with perpendicular magnetic anisotropy. Finally, as our system is ferromagnetic, we also need to include the symmetric exchange interaction. This is also necessary if we want to treat the skyrmion in the micromagnetic model, where we assume that the magnetization can be estimated by a smooth function. This assumption was for example used in the Taylor expansion of the DMI Hamiltonian. Our model then has the energy density given by
 \begin{align}
 \nonumber \epsilon &= \epsilon_E + \epsilon_{PMA} + \epsilon_{DM}^{\textrm{(interface)}} \\
 &=A \left[\left(\frac{\partial\theta}{\partial\rho}\right)^2 + \frac{\sin^2\theta}{\rho^2}\right] + K\sin^2\theta + D\cos\psi\left(\frac{\partial\theta}{\partial\rho} + \frac{m}{\rho}\sin\theta\cos\theta\right),
@@ -314,8 +324,27 @@ The two different skyrmions for the two different choices in helicities $\psi$ a
 \caption{A hedgehog skyrmion with a helicity (a) $\psi = 0$ and (b) $\psi = \pi$. The in-plane component of the magnetization is visualized by the vectors, while the $z$-component is shown in the background color.}
 \label{fig:HedgehogSkyrmions}
 \end{figure}
+
+\section{Magnons}
+
 \chapter{Magnetization dynamics}
 \section{The Landau--Lifshitz--Gilbert equation}
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{.3\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{Figures/Precession}
+  \caption{}
+\end{subfigure}%
+\hspace{1cm}
+\begin{subfigure}{.33\textwidth}
+  \centering
+  \includegraphics[width=1.0\linewidth]{Figures/DampedPrecession}
+  \caption{}
+\end{subfigure}
+\caption{The precession of the magnetization vector around a magnetic field. In (a) the precession is undamped and so the magnetization performs counter-clockwise circular rotations around the magnetic field. In (b) the damping component pointing towards the magnetic field causes a spiralling motion of the magnetization vector that eventually aligns the magnetization with the magnetic field.}
+\label{fig:Precessions}
+\end{figure}
 \section{Symmetries}
 \section{The Thiele equation}
 
