@@ -209,6 +209,7 @@ In some layered ultrathin film structures, such as Pd/Co \cite{Carcia1985}, it h
 to the lowest order in $\theta$. Here we have normalized the energy density in such a way that if the magnetization points along the easy axis the energy density is zero.
 
 \subsection{Voltage induced magnetic anisotropy}
+One form of perpendicular magnetic anisotropy occurs at the interface between certain materials. This has been attributed to the exchange interaction between $p-$ and $d-$oribitals at material interfaces, such as the 3$d$ orbital in Fe and 2$p$ orbital in O at an Fe/MgO interface \cite{Matsukura2015}. As this is a magnetic anisotropy that only occurs at the surface of the material, it will only be of importance in ultra-thin magnetic films where surface effects are of a greater importance. It has also been discovered that one can modify the strength of this surface magnetic anisotropy with an external electric field. The reason for the change of strength in the magnetic anisotropy is the modification of the occupation number in the 3$d$ orbitals in Fe, thereby affecting the $p-d$ exchange interaction that is the origin of the magnetic surface anisotropy \cite{Maruyama2009}. It was found that in a thin-film system with an Fe/MgO interface where the Fe layer consisted of only a few monoatomic layers a change of approximately 40\% could be achieved in the magnetic surface anisotropy by application of an external electric field. As it is relatively easy to generate a localized electric field, one can therefore create an energy landscape to influence the dynamics of magnetization patterns. An example of this was shown by Uphadhyaya et al. by guiding dipole-dipole interaction skyrmions with voltage gates \cite{Upadhyaya2015}.
 
 \subsection{Rashba spin-orbit coupling}
 In materials where the motion of the electrons is confined to a plane, and the inversion symmetry is broken along the axis perpendicular to that plane, there is a splitting of the spin energy levels. Inversion symmetry can for example be broken at the interface between two materials \cite{Heide2006}. The inversion asymmetry causes an electric field perpendicular to the plane of motion, as the gradient of the electrostatic potential becomes non-zero when inversion symmetry is broken ($V(\mathbold{r}) \neq V(-\mathbold{r})$). When particles move in an electric field, they experience a magnetic field which can be seen by performing a Lorentz transformation into the particles' restframe. This magnetic field is proportional to $\mathbold{v}\times\mathbold{E}$. Because of the magnetic field the energy levels become spin dependent, as the field couples to the spin. This is described by the Rashba Hamiltonian \citep{BychovRashba1984}
@@ -283,7 +284,7 @@ The skyrmion needs a certain type of physical mechanism in the material to be a 
 For the DMI to have a net energy contribution, we must remove the dependence on $\phi$ as the average of a harmonic function over the plane will be zero. We therefore require that $m = 1$, which is not an even number, meaning we must apply the boundary conditions for $\theta(\rho)$ mentioned earlier. The helicity $\psi$ is then chosen to minimize the energy contribution from DMI, which leaves us with the two options $\psi = 0$ and $\psi = \pi$, depending on the sign of $D$ and the $\theta$ profile. Due to the boundary conditions for $\theta$, the magnetization in the core of the skyrmion points in the opposite direction of the magnetization far away from the skyrmion core. The magnetization direction far away from the core must therefore be a stable direction in the energy. This can be done in a system with an easy axis parallel to that direction. If we consider a skyrmion in a thin film, which makes sense with our choice of interfacial DMI, the easy axis must be perpendicular to that film. In other words, we need a thin-film system with perpendicular magnetic anisotropy. Finally, as our system is ferromagnetic, we also need to include the symmetric exchange interaction. This is also necessary if we want to treat the skyrmion in the micromagnetic model, where we assume that the magnetization can be estimated by a smooth function. This assumption was for example used in the Taylor expansion of the DMI Hamiltonian. Our model then has the energy density given by
 \begin{align}
 \nonumber \epsilon &= \epsilon_E + \epsilon_{PMA} + \epsilon_{DM}^{\textrm{(interface)}} \\
-&=A \left[\left(\frac{\partial\theta}{\partial\rho}\right)^2 + \frac{\sin^2\theta}{\rho^2}\right] + K\sin^2\theta + D\cos\psi\left(\frac{\partial\theta}{\partial\rho} + \frac{m}{\rho}\sin\theta\cos\theta\right),
+&=A \left[\left(\frac{\partial\theta}{\partial\rho}\right)^2 + \frac{\sin^2\theta}{\rho^2}\right] + K\sin^2\theta + D\cos\psi\left(\frac{\partial\theta}{\partial\rho} + \frac{1}{\rho}\sin\theta\cos\theta\right),
 \end{align}
 assuming a magnetization profile given by \eqref{eq:SkyrmionMVec}. The energy is independent of $\phi$ due to our choice of $m$, but it remains a function of $\theta$ and $\rho$. As the skyrmion is a ground state, we can find the function $\theta(\rho)$ by minimizing the energy. Using the condition
 \begin{align}
@@ -294,7 +295,7 @@ and introducing the dimensionless length $\tilde{\rho} = \rho D/A$, one ends up 
 \label{eq:ODEtheta}
 \frac{\partial^2\theta}{\partial\tilde{\rho}^2} + \frac{1}{\tilde{\rho}}\frac{\partial\theta}{\partial\tilde{\rho}} - \frac{\sin\theta\cos\theta}{\tilde{\rho}^2}+\cos\psi\frac{\sin^2\theta}{\tilde{\rho}}-\frac{AK}{D^2}\sin\theta\cos\theta = 0.
 \end{align}
-Definining the ratio $AK/D^2$ as a parameter $C$, one can solve this equation numerically for a given $C$. Some numerical solutions are shown in Figure \ref{fig:ThetaProfile} when the boundary conditions $\theta(\rho = 0) = \pi$ and $\theta(\rho = \infty)$ have been used. It should be noted that this differential equation only has a solution when $\cos\psi = INSERT CORRECT VALUE$ for the chosen boundary conditions. The solutions for the different helicities $\psi_1 = BLA$ and $\psi_2 = BLA2$ have a simple relation, however. This relation can be verified to be
+Definining the ratio $AK/D^2$ as a parameter $C$, one can solve this equation numerically for a given $C$. Some numerical solutions are shown in Figure \ref{fig:ThetaProfile} when the boundary conditions $\theta(\rho = 0) = \pi$ and $\theta(\rho = \infty)$ have been used. It should be noted that this differential equation only has a solution when $\cos\psi = 1$ for the chosen boundary conditions. The solutions for the different helicities $\psi_1 = 0$ and $\psi_2 = \pi$ have a simple relation, however. This relation can be verified to be
 \begin{align}
 \theta_{\psi_1}(\rho) = \pi - \theta_{\psi_2}(\rho),
 \end{align}
@@ -329,6 +330,24 @@ The two different skyrmions for the two different choices in helicities $\psi$ a
 
 \chapter{Magnetization dynamics}
 \section{The Landau--Lifshitz--Gilbert equation}
+Magnetic moments are known to precess around magnetic fields when they are not perfectly aligned. This is known as Larmor precession. The magnetization in a magnet will therefore also perform Larmor precession, as the magnetization is the magnetic moment in a unit volume. This precession can be described by
+\begin{align}
+\frac{\textrm{d}\mathbold{M}}{\textrm{d}t} = -\gamma\mathbold{M}\times\mathbold{H},
+\end{align}
+where $\gamma$ is the gyromagnetic ratio defined by
+\begin{align}
+\gamma = \frac{g_e\mu_B}{\hbar}
+\end{align}
+and $g_e \approx 2$ is the $g$-factor and $\mu_B$ is the Bohr magneton. In addition to performing a precessing motion around the magnetic field, the magnetization will eventually relax parallel to the field to minimize the energy of the system. This can be modeled by introducing a damping term that is perpendicular to the magnetization and the precession of the magnetization. The precessional and damped precessional motions are illustrated in Figure \ref{fig:Precessions}. Originally Landau and Lifshitz proposed \cite{LandauLifshitz1935} a damping term of the form
+\begin{align}
+\frac{\textrm{d}\mathbold{M}}{\textrm{d}t} = -\gamma\mathbold{M}\times(\mathbold{H}+\frac{\alpha}{M_s}\mathbold{M}\times\mathbold{H}),
+\end{align}
+but it was discovered that this did not agree well with experiments in systems with a large damping parameter $\alpha$. Therefore Gilbert proposed a damping term that included the time-derivative of the magnetization instead \cite{Gilbert2004Classics}, which agreed much better with experiments, of the form
+\begin{align}
+\label{eq:LLG}
+\frac{\textrm{d}\mathbold{M}}{\textrm{d}t} = -\gamma\mathbold{M}\times\mathbold{H}+\frac{\alpha}{M_s}\mathbold{M}\times\frac{\textrm{d}\mathbold{M}}{\textrm{d}t}.
+\end{align}
+This is known as the Landau--Lifshitz--Gilbert equation.
 \begin{figure}[h!]
 \centering
 \begin{subfigure}{.3\textwidth}
@@ -345,8 +364,40 @@ The two different skyrmions for the two different choices in helicities $\psi$ a
 \caption{The precession of the magnetization vector around a magnetic field. In (a) the precession is undamped and so the magnetization performs counter-clockwise circular rotations around the magnetic field. In (b) the damping component pointing towards the magnetic field causes a spiralling motion of the magnetization vector that eventually aligns the magnetization with the magnetic field.}
 \label{fig:Precessions}
 \end{figure}
+It should be noted that the magnetic field $\mathbold{H}$ that the magnetization precesses around is not only an external magnetic field applied to the system, but it's the effective magnetic field experienced locally by the magnetization. The direction of this magnetic field represents the direction in which the magnetization will have a minimum in the micromagnetic energy, and the effective field can therefore be written in terms of the micromagnetic energy. The effective field in the absence of an external field is given by
+\begin{align}
+\label{eq:EffectiveField}
+\nonumber\mathbold{H}_{\textrm{eff}} &= -\frac{1}{\mu_0}\frac{\delta\epsilon[\mathbold{M}]}{\delta\mathbold{M}} \\
+&= \frac{2A}{\mu_0M_s}\mathbold{\nabla}^2\mathbold{m}+\frac{2(K+\eta E)}{\mu_0M_s}m_z\mathbold{\hat{z}} + \frac{2D}{\mu_0M_s}\left(\frac{\partial m_z}{\partial x}\mathbold{\hat{x}}+\frac{\partial m_z}{\partial y}\mathbold{\hat{y}}-(\mathbold{\nabla}\cdot\mathbold{m})\mathbold{\hat{z}}\right),
+\end{align}
+with $\mathbold{m}$ being a unit vector in the direction of the magnetization. Here the symmetric exchange interaction, perpendicular and voltage induced magnetic anisotropy and interfacial DMI have been taken into consideration in the effective field.
 \section{Symmetries}
+\subsection{Time reversal}
+\subsection{Spatial inversion}
 \section{The Thiele equation}
+In the special case of a time-dependent magnetization pattern that can be written as $\mathbold{M}(\mathbold{r}-\mathbold{R}(t))$, Thiele recognized \cite{Thiele1973} that the time derivative can be written as 
+\begin{align}
+\label{eq:ThieleRelation}
+\frac{\textrm{d} \mathbold{M}}{\textrm{d} t} = \frac{\partial \mathbold{R}}{\partial t}\frac{\partial \mathbold{M}}{\partial \mathbold{R}} = \frac{\partial \mathbold{R}}{\partial t} (-\frac{\partial \mathbold{M}}{\partial \mathbold{r}}) = -(\mathbold{v}\cdot\nabla)\mathbold{M}.
+\end{align}
+The form $\mathbold{M}(\mathbold{r}-\mathbold{R}(t))$ indicates that the magnetization pattern performs a translation without deformation of the original magnetization profile. Once the equilibrium profile at some time $t_0$ is known, the motion of the entire magnetization pattern can be described by the time-dependent position of some distinct part of the magnetization pattern, like the skyrmion-core. If one replaces all time derivatives with Thiele's relation as given above in the LLG equation, one can rewrite the LLG equation to the Thiele equation (as shown by Kr\"{u}ger in \cite{krugerDissertation}):
+\begin{align}
+\label{eq:Thiele}
+\mathbold{F} + \mathbold{G}\times(\mathbold{v}+b_J\mathbold{\hat{j}}_e) + D(\alpha\mathbold{v}+\xi b_J\mathbold{\hat{j}}_e) = 0.
+\end{align}
+This is a force equation with the definitions
+\begin{subequations}
+\label{eq:ThieleFGD}
+\begin{align}
+\label{eq:ThieleF}
+\mathbold{F} &= -\frac{\partial E}{\partial \mathbold{R}} = -\mu_0\int \d V\sum_k (\mathbold{\nabla}M_k)(H_k), \\
+\label{eq:ThieleG}
+\mathbold{G} &= \frac{2\pi M_s\mu_0 d}{\gamma'}\left[\cos\theta\right]_{\theta(r=0)}^{\theta(r=\infty)} \mathbold{\hat{z}},\\
+\label{eq:ThieleD}
+D &= - \frac{\pi M_s \mu_0 d}{\gamma '} \int_0^{\infty} \d r \left(r\left(\frac{\partial \theta}{\partial r}\right)^2+\frac{\sin^2\theta}{r}\right),
+\end{align}
+\end{subequations}
+where $d$ is the thickness of the film. The vector $\mathbold{F}$ is a force originating from an inhomogenous energy landscape or a magnetic field that is not parallel to the local magnetization (in other words a field not aligned with the effective field). $\mathbold{G}$ is a gyrovector that only depends on the direction of the magnetization in the skyrmion core and far away from the core. Lastly, $D$ denotes the strength of a dissipative force and is dependent on the radial profile of the out-of-plane angle $\theta$ of the skyrmion.  
 
 \chapter{Electric control of skyrmion motion}
 \begin{align}
@@ -398,6 +449,39 @@ C_E &= \frac{\gamma' \eta}{2\mu_0 M_s}\int_0^{\infty}\d r r\sin^2\theta.
 \dot{x}_0 &= - \frac{1+\alpha_C\beta_C + R}{1+\alpha_C^2}b_J + \frac{C_E}{1+\alpha_C^2}E_y - \frac{\alpha_C C_E}{1+\alpha_C^2}E_x, \\
 \dot{y}_0 &= \frac{\alpha_C-\beta_C - R}{1+\alpha_C^2}b_J - \frac{C_E}{1+\alpha_C^2}E_x - \frac{\alpha_C C_E}{1+\alpha_C^2}E_y.
 \end{align}
+
+\section{Pinning}
+As with domain walls, there is also a threshold current or field that is necessary for skyrmions to start moving, even though our previous results do not reflect this. In the case of skyrmions this threshold current is much weaker than the case of domain walls \cite{Jonietz2010}. The reason for this reluctance to move is pinning centers, which have much less impact on the motion of skyrmions than that of domain walls, but have an impact nonetheless. To model the effect of pinning centers on skyrmion motions at low current densities or weak electric fields, one can introduce a pinning force in the Thiele equation \eqref{eq:Thiele}. The equation of interest then becomes
+\begin{align}
+\label{eq:PinningThiele}
+\mathbold{F}_{\textrm{pin}}+\mathbold{F}_R+\mathbold{F}_E + \mathbold{G} \times\left(\mathbold{v}+b_J\mathbold{\hat{j}}_e\right) + D\left(\alpha\mathbold{v}+\beta b_J \mathbold{\hat{j}}_e\right) = 0.
+\end{align}
+The pinning force $\mathbold{F}_{\textrm{pin}}$ is usually written as \cite{Everschor2012, Iwasaki2013}.
+\begin{align}
+\mathbold{F}_{\textrm{pin}} = -4\pi v_{\textrm{pin}} f(\frac{v}{v_{\textrm{pin}}}) \frac{\mathbold{v}}{v},
+\end{align}
+where the function $f(\frac{v}{v_{\textrm{pin}}})$ goes towards unity for small skyrmion velocities $v$. In the low velocity limit one therefore approximates the pinning force by
+\begin{align}
+\mathbold{F}_{\textrm{pin}} = - v_{\textrm{pin}} \frac{\mathbold{v}}{v},
+\end{align}
+where the forces are normalized in a way so that the gyrovector $\mathbold{G} = (0, 0, 1)$. If one plugs this into the Thiele equation given by \eqref{eq:PinningThiele} and solves for the total velocity $v$, one ends up with the result
+\begin{align}
+\nonumber v = &\big(\big[\alpha_C^2v_{\textrm{pin}}^2-(\alpha_C^2+1)(v_{\textrm{pin}}^2-\beta_C^2b_J^2+2\beta_C(C_EE_x+Rb_J)b_J-(C_EE_x+Rb_J)^2\\
+&-b_J^2-2C_EE_yb_J-C_E^2E_y^2)\big]^{\frac{1}{2}}-\alpha_C v_{\textrm{pin}} \big)/\big(\alpha_C^2+1\big).
+\end{align}
+From this expression one can then determine the threshold current or electric field gradient necessary for the solution of $v$ to be greater than zero. If we first consider the case where the skyrmion motion is solely driven by a spin-polarized current, one finds that the skyrmion moves when $b_J > b_J^{\textrm{(crit)}}$ with
+\begin{align}
+b_J^{\textrm{(crit)}} = \frac{1}{1+\beta^2} \frac{\mu_BP}{eM_s}j_e^{\textrm{(crit)}}= \frac{v_{\textrm{pin}}}{\sqrt{\beta_C^2-2\beta_CR+R^2+1}}.
+\end{align}
+In the field driven case where the skyrmion motion is solely driven by an inhomogenous electric field applied perpendicular to the film, one finds that the skyrmion moves when the field gradient $E_g = \sqrt{E_x^2+E_y^2}$ is greater than some critical value
+\begin{align}
+E_g^{\textrm{(crit)}} = \frac{v_{\textrm{pin}}}{C_E}.
+\end{align}
+Up unto this point we have only discussed the total velocity as a result of pinning, and not the individual velocity components $\dot{x}_0$ and $\dot{y}_0$. These are rather simple to find once the total velocity $v$ is known. If one compares the form of $\mathbold{F}_{\textrm{pin}}$ to the form of the dissipative force in \eqref{eq:PinningThiele}, one sees that the pinning force can be included in the dissipative force. To get the velocity components in the presence of a pinning site one therefore makes the substitution
+\begin{align}
+\alpha_C \rightarrow \alpha_C + \frac{v_{\textrm{pin}}}{v}
+\end{align}
+into the expressions for $\dot{x}_0$ and $\dot{y}_0$. As one can see from this expression, the pinning is the most influential when the skyrmion is barely moving. As the skyrmion reaches a velocity much greater than the pinning velocity $v_{\textrm{pin}}$, the effects of the pinning center becomes negligible.
 
 \chapter{Magnon induced skyrmion motion}
 
