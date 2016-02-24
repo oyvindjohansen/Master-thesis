@@ -208,7 +208,7 @@ In some layered ultrathin film structures, such as Pd/Co \cite{Carcia1985}, it h
 \end{align} 
 to the lowest order in $\theta$. Here we have normalized the energy density in such a way that if the magnetization points along the easy axis the energy density is zero.
 
-\subsection{Voltage induced magnetic anisotropy}
+\subsection{Voltage induced magnetic anisotropy} \label{sec:VIMA}
 One form of perpendicular magnetic anisotropy occurs at the interface between certain materials. This has been attributed to the exchange interaction between $p-$ and $d-$oribitals at material interfaces, such as the 3$d$ orbital in Fe and 2$p$ orbital in O at an Fe/MgO interface \cite{Matsukura2015}. As this is a magnetic anisotropy that only occurs at the surface of the material, it will only be of importance in ultra-thin magnetic films where surface effects are of a greater importance. It has also been discovered that one can modify the strength of this surface magnetic anisotropy with an external electric field. The reason for the change of strength in the magnetic anisotropy is the modification of the occupation number in the 3$d$ orbitals in Fe, thereby affecting the $p-d$ exchange interaction that is the origin of the magnetic surface anisotropy \cite{Maruyama2009}. It was found that in a thin-film system with an Fe/MgO interface where the Fe layer consisted of only a few monoatomic layers a change of approximately 40\% could be achieved in the magnetic surface anisotropy by application of an external electric field. As it is relatively easy to generate a localized electric field, one can therefore create an energy landscape to influence the dynamics of magnetization patterns. An example of this was shown by Uphadhyaya et al. by guiding dipole-dipole interaction skyrmions with voltage gates \cite{Upadhyaya2015}.
 
 \subsection{Rashba spin-orbit coupling}
@@ -400,57 +400,95 @@ D &= - \frac{\pi M_s \mu_0 d}{\gamma '} \int_0^{\infty} \d r \left(r\left(\frac{
 where $d$ is the thickness of the film. The vector $\mathbold{F}$ is a force originating from an inhomogenous energy landscape or a magnetic field that is not parallel to the local magnetization (in other words a field not aligned with the effective field). $\mathbold{G}$ is a gyrovector that only depends on the direction of the magnetization in the skyrmion core and far away from the core. Lastly, $D$ denotes the strength of a dissipative force and is dependent on the radial profile of the out-of-plane angle $\theta$ of the skyrmion.  
 
 \chapter{Electric control of skyrmion motion}
+\section{Skyrmion velocity}
+The extended LLG equation that includes Rashba spin-orbit coupling and spin transfer torques is given by
 \begin{align}
 \nonumber \frac{\partial \mathbold{M}}{\partial t} &= -\gamma'\mathbold{M}\times(\mathbold{H}_{\text{eff}}+\mathbold{H}_R-\frac{\beta}{M_s} \mathbold{M}\times\mathbold{H}_R) \\
-&\hspace{4.5mm}+\frac{\alpha}{M_s}\mathbold{M}\times\frac{\partial\mathbold{M}}{\partial t} + b_J (\mathbold{\hat{j}}_e\cdot\mathbold{\nabla})\mathbold{M} - \beta b_J \mathbold{M}\times(\mathbold{\hat{j}}_e\cdot\mathbold{\nabla})\mathbold{M}, \\
-\mathbold{H}_R &= \frac{\alpha_R m_e}{\hbar \mu_B}b_J (\mathbold{\hat{z}}\times\mathbold{\hat{j}}_e) = C_R b_J (\mathbold{\hat{z}}\times\mathbold{\hat{j}}_e).
+&\hspace{4.5mm}+\frac{\alpha}{M_s}\mathbold{M}\times\frac{\partial\mathbold{M}}{\partial t} + b_J (\mathbold{\hat{j}}_e\cdot\mathbold{\nabla})\mathbold{M} - \beta b_J \mathbold{M}\times(\mathbold{\hat{j}}_e\cdot\mathbold{\nabla})\mathbold{M}, 
 \end{align}
+with the Rashba field $\mathbold{H}_R$ being given by
 \begin{align}
-\mathbold{F}_R &= -\mu_0\int \d V\sum_k (\mathbold{\nabla}M_k)\left[\mathbold{H}_R - \frac{\beta}{M_s}\mathbold{M}\times\mathbold{H}_R\right]_k \\
-&= -\mu_0 \pi\beta C_R b_J M_s d \int_0^{\infty} \d r \left(\frac{\partial \theta}{\partial r} r + \sin\theta\cos\theta \right) \mathbold{\hat{x}} \\
-&\hspace{4.5mm}- \mu_0 \pi C_R b_J M_s d \int_0^{\infty} \d r \left(r\frac{\partial \theta}{\partial r}\cos\theta + \sin\theta\right) \mathbold{\hat{y}} \\
+\mathbold{H}_R = \frac{\alpha_R m_e}{\hbar \mu_B}b_J (\mathbold{\hat{z}}\times\mathbold{\hat{j}}_e) = C_R b_J (\mathbold{\hat{z}}\times\mathbold{\hat{j}}_e).
+\end{align}
+This result was derived by Kim et al. in \cite{Kim2012}. We now want to find this equation in the Thiele formalism, as it then goes from being a partial differential equation to being an algebraic equation in the velocity components. The terms involving the Rashba field $\mathbold{H}_R$ act as a magnetic field in the LLG equation, and we can therefore use the definition of the force from a magnetic field that is not aligned with the effective field in the Thiele equation as given by \eqref{eq:ThieleF}:
+\begin{align}
+\nonumber\mathbold{F}_R &= -\mu_0\int \d V\sum_k (\mathbold{\nabla}M_k)\left[\mathbold{H}_R - \frac{\beta}{M_s}\mathbold{M}\times\mathbold{H}_R\right]_k \\
+\nonumber&= -\mu_0 \pi\beta C_R b_J M_s d \int_0^{\infty} \d r \left(\frac{\partial \theta}{\partial r} r + \sin\theta\cos\theta \right) \mathbold{\hat{x}} \\
+\nonumber&\hspace{4.5mm}- \mu_0 \pi C_R b_J M_s d \int_0^{\infty} \d r \left(r\frac{\partial \theta}{\partial r}\cos\theta + \sin\theta\right) \mathbold{\hat{y}} \\
 &= -\mu_0 \pi\beta C_R b_J M_s d \int_0^{\infty} \d r \left(\frac{\partial \theta}{\partial r} r + \sin\theta\cos\theta \right) \mathbold{\hat{x}}.
 \end{align}
+The $y-$ component of the force is zero, which can be seen by considering the integral of parts of the function $\sin\theta(r)$,
 \begin{align}
-\int_0^{\infty} \d r \sin\theta(r) = r\sin\theta(r)|_{r = 0}^{r=\infty} - \int_0^{\infty} \d r r \frac{\partial \theta}{\partial r} \cos\theta(r) \\
+\int_0^{\infty} \d r \sin\theta(r) = r\sin\theta(r)|_{r = 0}^{r=\infty} - \int_0^{\infty} \d r r \frac{\partial \theta}{\partial r} \cos\theta(r).
+\end{align}
+Rearranging the terms gives us the integral that the $y-$ component of the Rashba force $\mathbold{F}_R$ is proportional to,
+\begin{align}
 \int_0^{\infty} \d r \left(r\frac{\partial \theta}{\partial r}\cos\theta + \sin\theta\right) = r\sin\theta(r)|_{r = 0}^{r=\infty} = 0.
 \end{align}
+This limit can be verified to be zero by plotting the function numerically.
+
+We now have the force resulting from Rashba spin-orbit coupling, the next step is then to find the force from an inhomogenous electric field. As discussed in section \ref{sec:VIMA}, applying an electric field perpendicular to the film can for certain types of film structures modify the strength of the perpendicular magnetic anisotropy. The energy density must then have the same form as that of $\epsilon_{PMA}$ in \eqref{eq:PMADensity} and be dependent on the electric field. If one assumes that the modification of the electric field on the PMA is linear in the electric field, the energy density can be written as
 \begin{align}
-\epsilon_{EF} = \eta E(\mathbold{r}) \left(1-m_z^2\right) = \eta E(\mathbold{r}) \sin^2\theta.
+\epsilon_{EF} = \eta E(\mathbold{r}) \left(1-m_z^2\right) = \eta E(\mathbold{r}) \sin^2\theta,
 \end{align}
+where $\eta$ is a materialistic constant describing the strength of the modification of PMA by the electric field, and the electric field strength $E(\mathbold{r})$ is the $z-$ component of the electric field as a function of position in the thin film. If we consider an electric field with a constant gradient, the field can then be written in cartesian and skyrmion coordinates as
+\begin{subequations}
 \begin{align}
 E(\mathbold{r}) &= E_x x + E_y y \\
 &= E_x x_0 + E_y y_0 + E_x r \cos\phi + E_y r \sin\phi.
 \end{align}
+\end{subequations}
+If we integrate this energy density over the entire film, we then find that the total energy contribution from the electric field becomes
 \begin{align}
-U_{EF} &= \int \d V \epsilon_{EF} \\
-&= \eta \int_0^d \d z \int_0^{2\pi}\d \phi \int_0^{\infty}\d r\left( E_x x_0 + E_y y_0 + E_x r \cos\phi + E_y r \sin\phi \right) r \sin^2\theta \\
+\nonumber U_{EF} &= \int \d V \epsilon_{EF} \\
+\nonumber &= \eta \int_0^d \d z \int_0^{2\pi}\d \phi \int_0^{\infty}\d r\left( E_x x_0 + E_y y_0 + E_x r \cos\phi + E_y r \sin\phi \right) r \sin^2\theta \\
 &= 2\pi\eta d\left(E_x x_0 + E_y y_0\right)\int_0^{\infty}\d r r \sin^2\theta.
 \end{align}
+Remembering that a gradient of the free micromagnetic energy will result in a force in the Thiele equation, as described by \eqref{eq:ThieleF}, we can write the force resulting from the inhomogenous electric field as
 \begin{align}
-\mathbold{F}_E &= -\mathbold{\nabla}U_{EF} \\
+\nonumber\mathbold{F}_E &= -\mathbold{\nabla}U_{EF} \\
 &= -2\pi \eta d \left(E_x \mathbold{\hat{x}} + E_y \mathbold{\hat{y}}\right) \int_0^{\infty}\d r r \sin^2\theta.
 \end{align}
+The final equation in the Thiele formalism for our model can then be written as
 \begin{align}
-\mathbold{F}_R+\mathbold{F}_E + \mathbold{G} \times\left(\mathbold{v}+b_J\mathbold{\hat{j}}_e\right) + D\left(\alpha\mathbold{v}+\beta b_J \mathbold{\hat{j}}_e\right) = 0.
+\mathbold{F}_R+\mathbold{F}_E + \mathbold{G} \times\left(\mathbold{v}+b_J\mathbold{\hat{j}}_e\right) + D\left(\alpha\mathbold{v}+\beta b_J \mathbold{\hat{j}}_e\right) = 0,
 \end{align}
+where we remember the definitions of the gyrovector $\mathbold{G}$ and dissipation factor $D$ to be
+\begin{subequations}
 \begin{align}
 \mathbold{G} &= \frac{2\pi M_s\mu_0 d}{\gamma'}\left[\cos\theta\right]_{\theta(r=0)}^{\theta(r=\infty)} \mathbold{\hat{z}}\\
 D &= - \frac{\pi M_s \mu_0 d}{\gamma '} \int_0^{\infty} \d r \left(r\left(\frac{\partial \theta}{\partial r}\right)^2+\frac{\sin^2\theta}{r}\right).
 \end{align}
+\end{subequations}
+If we divide this equation by the length of $\mathbold{G}$, the non-trivial equations we end up with are
+\begin{subequations}
+\label{eq:EquationsMotionElectricControl}
+\begin{align}
+- R b_J - C_E E_x - \dot{y}_0 - \alpha_C \dot{x}_0 - \beta_C b_J &= 0, \\
+-C_E E_y + \dot{x}_0 + b_J -\alpha_C\dot{y}_0 &= 0,
+\end{align}
+\end{subequations}
+where we have made the following definitions:
+\begin{subequations}
 \begin{align}
 \alpha_C &= \frac{\alpha}{4} \int_0^{\infty} \d r \left(r\left(\frac{\partial \theta}{\partial r}\right)^2+\frac{\sin^2\theta}{r}\right), \\
 \beta_C &=\frac{\beta}{4} \int_0^{\infty} \d r \left(r\left(\frac{\partial \theta}{\partial r}\right)^2+\frac{\sin^2\theta}{r}\right), \\
 R &= \frac{\gamma'\beta C_R}{4} \int_0^{\infty} \d r \left(\frac{\partial \theta}{\partial r} r + \sin\theta\cos\theta \right), \\
 C_E &= \frac{\gamma' \eta}{2\mu_0 M_s}\int_0^{\infty}\d r r\sin^2\theta.
 \end{align}
-
+\end{subequations}
+Solving the equations in \eqref{eq:EquationsMotionElectricControl} for $\dot{x}_0$ and $\dot{y}_0$ one finally ends up with the velocity components of the motion of a skyrmion under the influence of spin-transfer torque, Rashba spin-orbit coupling and an inhomogenous electric field:
+\begin{subequations}
+\label{eq:ElectricalSkyrmionVComponents}
 \begin{align}
-\dot{x}_0 &= - \frac{1+\alpha_C\beta_C + R}{1+\alpha_C^2}b_J + \frac{C_E}{1+\alpha_C^2}E_y - \frac{\alpha_C C_E}{1+\alpha_C^2}E_x, \\
-\dot{y}_0 &= \frac{\alpha_C-\beta_C - R}{1+\alpha_C^2}b_J - \frac{C_E}{1+\alpha_C^2}E_x - \frac{\alpha_C C_E}{1+\alpha_C^2}E_y.
+\dot{x}_0 &= - \frac{1+\alpha_C\beta_C + \alpha_CR}{\alpha_C^2+1}b_J + \frac{C_E}{\alpha_C^2+1}E_y - \frac{\alpha_C C_E}{\alpha_C^2+1}E_x, \\
+\dot{y}_0 &= \frac{\alpha_C-\beta_C - R}{\alpha_C^2+1}b_J - \frac{C_E}{\alpha_C^2+1}E_x - \frac{\alpha_C C_E}{\alpha_C^2+1}E_y.
 \end{align}
+\end{subequations}
 
-\section{Pinning}
+\section{Numerical integrals}
+
+\section{Pinning, threshold currents and field gradients}
 As with domain walls, there is also a threshold current or field that is necessary for skyrmions to start moving, even though our previous results do not reflect this. In the case of skyrmions this threshold current is much weaker than the case of domain walls \cite{Jonietz2010}. The reason for this reluctance to move is pinning centers, which have much less impact on the motion of skyrmions than that of domain walls, but have an impact nonetheless. To model the effect of pinning centers on skyrmion motions at low current densities or weak electric fields, one can introduce a pinning force in the Thiele equation \eqref{eq:Thiele}. The equation of interest then becomes
 \begin{align}
 \label{eq:PinningThiele}
@@ -464,24 +502,80 @@ where the function $f(\frac{v}{v_{\textrm{pin}}})$ goes towards unity for small 
 \begin{align}
 \mathbold{F}_{\textrm{pin}} = - v_{\textrm{pin}} \frac{\mathbold{v}}{v},
 \end{align}
-where the forces are normalized in a way so that the gyrovector $\mathbold{G} = (0, 0, 1)$. If one plugs this into the Thiele equation given by \eqref{eq:PinningThiele} and solves for the total velocity $v$, one ends up with the result
+where the forces are normalized in a way so that the gyrovector $\mathbold{G} = (0, 0, 1)$. The non-trivial equations we then get from \eqref{eq:PinningThiele} are
+\begin{subequations}
+\label{eq:PinningThieleComponents}
 \begin{align}
-\nonumber v = &\big(\big[\alpha_C^2v_{\textrm{pin}}^2-(\alpha_C^2+1)(v_{\textrm{pin}}^2-\beta_C^2b_J^2+2\beta_C(C_EE_x+Rb_J)b_J-(C_EE_x+Rb_J)^2\\
-&-b_J^2-2C_EE_yb_J-C_E^2E_y^2)\big]^{\frac{1}{2}}-\alpha_C v_{\textrm{pin}} \big)/\big(\alpha_C^2+1\big).
+\label{eq:PinningThieleA}
+-\dot{y}_0 - \beta_Cb_J - \alpha_C\dot{x}_0 - v_{\textrm{pin}}\frac{\dot{x}_0}{v} + F_x &= 0, \\
+\label{eq:PinningThieleB}
+b_J + \dot{x}_0 - \alpha_C\dot{y}_0 - v_{\textrm{pin}}\frac{\dot{y}_0}{v} + F_y &= 0,
 \end{align}
-From this expression one can then determine the threshold current or electric field gradient necessary for the solution of $v$ to be greater than zero. If we first consider the case where the skyrmion motion is solely driven by a spin-polarized current, one finds that the skyrmion moves when $b_J > b_J^{\textrm{(crit)}}$ with
+\end{subequations}
+where $F_x$ and $F_y$ are the $x-$ and $y-$ components of the total force $\mathbold{F}_R + \mathbold{F}_E$ resulting from Rashba spin-orbit coupling and voltage induced magnetic anisotropy respectively. In the case of $F_x = F_y = 0$, one can see that if one makes the substitution
 \begin{align}
-b_J^{\textrm{(crit)}} = \frac{1}{1+\beta^2} \frac{\mu_BP}{eM_s}j_e^{\textrm{(crit)}}= \frac{v_{\textrm{pin}}}{\sqrt{\beta_C^2-2\beta_CR+R^2+1}}.
+\alpha_C \rightarrow \alpha_C+\frac{v_{\textrm{pin}}}{v}
+\end{align}
+the equations of motion are exactly the same as for the case of the motion of a skyrmion due to a spin-polarized current. The solutions of $\dot{x}_0$ and $\dot{y}_0$ are known in this case, and one can therefore make the substitution of $\alpha_C$ above into these solutions to get the solutions in the presence of pinning:
+\begin{subequations}
+\begin{align}
+\dot{x}_0 &= -\frac{1+(\alpha_C+\frac{v_{\textrm{pin}}}{v})\beta_C}{(\alpha_C+\frac{v_{\textrm{pin}}}{v})^2+1}b_J, \\
+\dot{y}_0 &= \frac{(\alpha_C+\frac{v_{\textrm{pin}}}{v}) - \beta_C}{(\alpha_C+\frac{v_{\textrm{pin}}}{v})^2+1}b_J.
+\end{align}
+\end{subequations}
+As one can see, these solutions depend on the total skyrmion velocity $v$. To determine this velocity we use the relation $v^2 = \dot{x}_0^2+\dot{y}_0^2$ and the solutions above, which gives us the equation
+\begin{align}
+v^2 = \frac{\beta_C^2+1}{(\alpha_C^2+\frac{v_{\textrm{pin}}}{v})^2+1}b_J^2.
+\end{align}
+Rearranging this equation one can get the following second order equation in $v$:
+\begin{align}
+(\alpha_C^2+1)v^2+(2\alpha_Cv_{\textrm{pin}})v + (v_{\textrm{pin}}^2-(\beta_C^2+1)b_J^2) = 0.
+\end{align}
+The solution to this equation is given by
+\begin{align}
+v = \frac{\sqrt{(\alpha_Cv_{\textrm{pin}})^2+(\alpha_C^2+1)\left[(\beta_C^2+1)b_J^2-v_{\textrm{pin}}^2\right]}-\alpha_Cv_{\textrm{pin}}}{\alpha_C^2+1},
+\end{align}
+where the positive solution has been chosen as that is the only solution that can give a positive $v$. This solution in $v$ differs from the solution given by Iwasaki et al. \cite{Iwasaki2013} by the term outside of the square root, but the solutions of $\dot{x}_0$ and $\dot{y}_0$ are in agreement. As our solution of $v$ is consistent with our solutions of $\dot{x}_0$ and $\dot{y}_0$, and if one plugs our solutions into the equations in \eqref{eq:PinningThieleComponents} they are satisfied in the case $F_x = F_y = 0$, it is concluded that our solutions are correct. 
+
+So far we have only discussed pinning of the spin-polarized current driven skyrmion motion, but it is also of interest to find the same results in the presence of Rashba spin-orbit coupling and an imhomogenous electric field perpendicular to the film. In other words, we must solve \eqref{eq:PinningThieleComponents} when $F_x \neq 0$ and $F_y \neq 0$. We apply the same trick again where we try to incorporate $F_x$ and $F_y$ into similar variables in the equations we already have a solution for. $F_x$ and $F_y$ are both independent of $\dot{x}_0$, $\dot{y}_0$ and $v$, we must therefore try to include them in other terms also independent of these variables. In \eqref{eq:PinningThieleA} the only term independent of these is $-\beta_Cb_J$, and in \eqref{eq:PinningThieleB} the term is $b_J$. If we define new variables $\tilde{\beta}_C$ and $\tilde{b}_J$ that satisfy
+\begin{subequations}
+\begin{align}
+-\tilde{\beta}_C\tilde{b}_J &= -\beta_Cb_J + F_x, \\
+\tilde{b}_J &= b_J + F_y,
+\end{align}
+\end{subequations}
+meaning they have the following definitions:
+\begin{subequations}
+\begin{align}
+\tilde{\beta}_C &= \frac{\beta_Cb_J-F_x}{b_J+F_y}, \\
+\tilde{b}_J &= b_J + F_y,
+\end{align}
+\end{subequations}
+the equations have the same form as before with $\beta_C \rightarrow \tilde{\beta}_C$ and $b_J \rightarrow \tilde{b}_J$. The total force components resulting from $\mathbold{F}_R+\mathbold{F}_E$ are
+\begin{subequations}
+\begin{align}
+F_x &= -C_E E_x - Rb_J, \\
+F_y &= -C_E E_y.
+\end{align}
+\end{subequations}
+If we plug these into $\tilde{\beta}_C$ and $\tilde{b}_J$ and make the substitutions in our previous solutions of $\dot{x}_0$, $\dot{y}_0$ and $v$ from the current driven case, we end up with the solutions
+\begin{subequations}
+\begin{align}
+\dot{x}_0 &= -\frac{1+(\alpha_C+\frac{v_{\textrm{pin}}}{v})(\beta_C+R)}{(\alpha_C+\frac{v_{\textrm{pin}}}{v})^2+1}b_J + \frac{C_E}{(\alpha_C+\frac{v_{\textrm{pin}}}{v})^2+1}E_y - \frac{(\alpha_C+\frac{v_{\textrm{pin}}}{v})C_E}{(\alpha_C+\frac{v_{\textrm{pin}}}{v})^2+1}E_x, \\
+\dot{y}_0 &= \frac{(\alpha_C+\frac{v_{\textrm{pin}}}{v})-\beta_C - R}{(\alpha_C+\frac{v_{\textrm{pin}}}{v})^2+1}b_J - \frac{C_E}{(\alpha_C+\frac{v_{\textrm{pin}}}{v})^2+1}E_x - \frac{(\alpha_C+\frac{v_{\textrm{pin}}}{v}) C_E}{(\alpha_C+\frac{v_{\textrm{pin}}}{v})^2+1}E_y, \\
+\label{eq:PinningVElectrical}
+v &= \frac{\sqrt{(\alpha_Cv_{\textrm{pin}})^2+(\alpha_C^2+1)\left[(\beta_Cb_J+Rb_J+
+C_EE_x)^2+(b_J-C_EE_y)^2-v_{\textrm{pin}}^2\right]}-\alpha_Cv_{\textrm{pin}}}{\alpha_C^2+1}.
+\end{align}
+\end{subequations}
+It can be seen that in the limit of no pinning ($v_{\textrm{pin}} \rightarrow 0$) the results for $\dot{x}_0$ and $\dot{y}_0$ are in agreement with \eqref{eq:ElectricalSkyrmionVComponents}. From the expression for $v$ in \eqref{eq:PinningVElectrical} it is also possible to determine the threshold current or electric field gradient necessary for the solution of $v$ to be greater than zero. If we first consider the case where the skyrmion motion is solely driven by a spin-polarized current, one finds that the skyrmion moves when $b_J > b_J^{\textrm{(crit)}}$ with
+\begin{align}
+b_J^{\textrm{(crit)}} = \frac{1}{1+\beta^2} \frac{\mu_BP}{eM_s}j_e^{\textrm{(crit)}}= \frac{v_{\textrm{pin}}}{\sqrt{(\beta_C+R)^2+1}}.
 \end{align}
 In the field driven case where the skyrmion motion is solely driven by an inhomogenous electric field applied perpendicular to the film, one finds that the skyrmion moves when the field gradient $E_g = \sqrt{E_x^2+E_y^2}$ is greater than some critical value
 \begin{align}
 E_g^{\textrm{(crit)}} = \frac{v_{\textrm{pin}}}{C_E}.
 \end{align}
-Up unto this point we have only discussed the total velocity as a result of pinning, and not the individual velocity components $\dot{x}_0$ and $\dot{y}_0$. These are rather simple to find once the total velocity $v$ is known. If one compares the form of $\mathbold{F}_{\textrm{pin}}$ to the form of the dissipative force in \eqref{eq:PinningThiele}, one sees that the pinning force can be included in the dissipative force. To get the velocity components in the presence of a pinning site one therefore makes the substitution
-\begin{align}
-\alpha_C \rightarrow \alpha_C + \frac{v_{\textrm{pin}}}{v}
-\end{align}
-into the expressions for $\dot{x}_0$ and $\dot{y}_0$. As one can see from this expression, the pinning is the most influential when the skyrmion is barely moving. As the skyrmion reaches a velocity much greater than the pinning velocity $v_{\textrm{pin}}$, the effects of the pinning center becomes negligible.
 
 \chapter{Magnon induced skyrmion motion}
 
