@@ -336,13 +336,13 @@ Magnetic moments are known to precess around magnetic fields when they are not p
 \end{align}
 where $\gamma$ is the gyromagnetic ratio defined by
 \begin{align}
-\gamma = \frac{g_e\mu_B}{\hbar}
+\gamma = \frac{g_e\mu_0\mu_B}{\hbar}
 \end{align}
-and $g_e \approx 2$ is the $g$-factor and $\mu_B$ is the Bohr magneton. In addition to performing a precessing motion around the magnetic field, the magnetization will eventually relax parallel to the field to minimize the energy of the system. This can be modeled by introducing a damping term that is perpendicular to the magnetization and the precession of the magnetization. The precessional and damped precessional motions are illustrated in Figure \ref{fig:Precessions}. Originally Landau and Lifshitz proposed \cite{LandauLifshitz1935} a damping term of the form
+where $g_e \approx 2$ is the $g$-factor, $\mu_0$ the vacuum permeability and $\mu_B$ is the Bohr magneton. In addition to performing a precessing motion around the magnetic field, the magnetization will eventually relax parallel to the field to minimize the energy of the system. This can be modeled by introducing a damping term that is perpendicular to the magnetization and the precession of the magnetization. The precessional and damped precessional motions are illustrated in Figure \ref{fig:Precessions}. Originally Landau and Lifshitz proposed \cite{LandauLifshitz1935} a damping term of the form
 \begin{align}
 \frac{\textrm{d}\mathbold{M}}{\textrm{d}t} = -\gamma\mathbold{M}\times(\mathbold{H}+\frac{\alpha}{M_s}\mathbold{M}\times\mathbold{H}),
 \end{align}
-but it was discovered that this did not agree well with experiments in systems with a large damping parameter $\alpha$. Therefore Gilbert proposed a damping term that included the time-derivative of the magnetization instead \cite{Gilbert2004Classics}, which agreed much better with experiments, of the form
+but it was discovered that this did not agree well with experiments in systems with a large damping parameter $\alpha$. Therefore Gilbert proposed a damping term that included the time-derivative of the magnetization instead \cite{Gilbert2004Classics}, which agreed much better with experiments \cite{GilbertKelly1955}, of the form
 \begin{align}
 \label{eq:LLG}
 \frac{\textrm{d}\mathbold{M}}{\textrm{d}t} = -\gamma\mathbold{M}\times\mathbold{H}+\frac{\alpha}{M_s}\mathbold{M}\times\frac{\textrm{d}\mathbold{M}}{\textrm{d}t}.
@@ -371,8 +371,22 @@ It should be noted that the magnetic field $\mathbold{H}$ that the magnetization
 &= \frac{2A}{\mu_0M_s}\mathbold{\nabla}^2\mathbold{m}+\frac{2(K+\eta E)}{\mu_0M_s}m_z\mathbold{\hat{z}} + \frac{2D}{\mu_0M_s}\left(\frac{\partial m_z}{\partial x}\mathbold{\hat{x}}+\frac{\partial m_z}{\partial y}\mathbold{\hat{y}}-(\mathbold{\nabla}\cdot\mathbold{m})\mathbold{\hat{z}}\right),
 \end{align}
 with $\mathbold{m}$ being a unit vector in the direction of the magnetization. Here the symmetric exchange interaction, perpendicular and voltage induced magnetic anisotropy and interfacial DMI have been taken into consideration in the effective field.
+
+Another thing to notice about the LLG equation is that only the direction of the magnetization $\mathbold{M}$ and not its magnitude changes with time. This can be seen by multiplying \eqref{eq:LLG} by $\mathbold{M}$ from the left:
+\begin{align}
+\mathbold{M}\cdot\frac{\textrm{d}\mathbold{M}}{\textrm{d}t} = \frac{1}{2}\frac{\textrm{d}}{\textrm{d}t} \mathbold{M}^2 =  \mathbold{M}\cdot\left(-\gamma\mathbold{M}\times\mathbold{H}+\frac{\alpha}{M_s}\mathbold{M}\times\frac{\textrm{d}\mathbold{M}}{\textrm{d}t}\right) = 0.
+\end{align}
+In other words the LLG equation conserves the magnitude of the magnetization, meaning $\frac{\textrm{d} M_s}{\textrm{d}t} = 0$.
+
 \section{Symmetries}
 \subsection{Time reversal}
+Time reversal (or T-symmetry) is a transformation where one reverses the time ($t \rightarrow -t$ as the name indicates. Physical laws that are symmetric under time reversal are reversible processes, while physical laws that break the time reversal symmetry are irreversible processes. Physical variables are either even or odd during time reversal. If they are even they are symmetric under time reversal, and if they are odd they are asymmetric during time reversal. To discuss whether the LLG equation breaks time reversal we need to know how the magnetization $\mathbold{M}$ and the magnetic field $\mathbold{H}$ transform (the constants $\alpha$, $M_s$ and $\gamma$ are all even under time reversal, as they are unrelated to the weak force). It turns out that both $\mathbold{M}$ and $\mathbold{H}$ are odd during time reversal. If we then apply the time reversal transformation to the LLG equation, we end up with
+\begin{align}
+\label{eq:LLG_TR}
+\frac{\textrm{d}\mathbold{M}}{\textrm{d}t} = -\gamma\mathbold{M}\times\mathbold{H}-\frac{\alpha}{M_s}\mathbold{M}\times\frac{\textrm{d}\mathbold{M}}{\textrm{d}t}.
+\end{align}
+Comparing this to the LLG equation in \eqref{eq:LLG} we see that the LLG equation breaks T-symmetry due to the damping term proportional to $\alpha$. The damping is a dissipative motion, and is therefore an irreversible process. The precession of the magnetization around the magnetic field on the other hand does not break T-symmetry, and is therefore a reversible process.
+
 \subsection{Spatial inversion}
 \section{The Thiele equation}
 In the special case of a time-dependent magnetization pattern that can be written as $\mathbold{M}(\mathbold{r}-\mathbold{R}(t))$, Thiele recognized \cite{Thiele1973} that the time derivative can be written as 
@@ -487,6 +501,39 @@ Solving the equations in \eqref{eq:EquationsMotionElectricControl} for $\dot{x}_
 \end{subequations}
 
 \section{Numerical integrals}
+The solution of the skyrmion velocity depends on parameters that are functions of three different integrals. These integrals depend on the solution of $\theta(r)$ that is obtained numerically by solving \eqref{eq:ODEtheta}. As our solution of $\theta$ is a numerical function, the integrals have to be calculated numerically as well. In \eqref{eq:ODEtheta} the only variable parameter is the skyrmion parameter $C = AK/D^2$, so the integrals can be expressed as functions of $C$ and for some of the integrals a dimensional scaling factor. The three integrals that we need to evaluate are
+\begin{subequations}
+\begin{align}
+I_1 &= \int_0^{\infty} \textrm{d} \tilde{r} \left(\tilde{r}\left(\frac{\partial \theta}{\partial \tilde{r}}\right)^2+\frac{\sin^2\theta}{\tilde{r}}\right), \\
+I_2 &= \frac{A}{D} \int_0^{\infty} \textrm{d} \tilde{r} \left(\frac{\partial \theta}{\partial \tilde{r}} \tilde{r} + \sin\theta\cos\theta \right), \\
+I_3 &= \frac{A^2}{D^2}\int_0^{\infty} \textrm{d} \tilde{r} \tilde{r}\sin^2\theta.
+\end{align}
+\end{subequations}
+Here the solution of $\theta$ inside the integrals is given in the dimensionless length scale $\tilde{r} = r\cdot D/A$. The resulting integrals as functions of $C$ are shown in Figure \ref{fig:ThetaInts}.
+\begin{figure}[h!]
+\centering
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/I1Plot.pdf}
+  \caption{}
+  \label{fig:ThetaInt1}
+\end{subfigure}
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/I2Plot.pdf}
+  \caption{}
+  \label{fig:ThetaInt2}
+\end{subfigure}
+\linebreak
+\begin{subfigure}{.49\textwidth}
+  \centering
+  \includegraphics[width=\linewidth]{Figures/I3Plot.pdf}
+  \caption{}
+  \label{fig:ThetaInt3}
+\end{subfigure}
+\caption{Numerical evaluations of the integrals (a) $I_1$, (b) $I_2$ and (c) $I_3$ as a function of the skyrmion parameter $C$.}
+\label{fig:ThetaInts}
+\end{figure}
 
 \section{Pinning, threshold currents and field gradients}
 As with domain walls, there is also a threshold current or field that is necessary for skyrmions to start moving, even though our previous results do not reflect this. In the case of skyrmions this threshold current is much weaker than the case of domain walls \cite{Jonietz2010}. The reason for this reluctance to move is pinning centers, which have much less impact on the motion of skyrmions than that of domain walls, but have an impact nonetheless. To model the effect of pinning centers on skyrmion motions at low current densities or weak electric fields, one can introduce a pinning force in the Thiele equation \eqref{eq:Thiele}. The equation of interest then becomes
@@ -494,11 +541,11 @@ As with domain walls, there is also a threshold current or field that is necessa
 \label{eq:PinningThiele}
 \mathbold{F}_{\textrm{pin}}+\mathbold{F}_R+\mathbold{F}_E + \mathbold{G} \times\left(\mathbold{v}+b_J\mathbold{\hat{j}}_e\right) + D\left(\alpha\mathbold{v}+\beta b_J \mathbold{\hat{j}}_e\right) = 0.
 \end{align}
-The pinning force $\mathbold{F}_{\textrm{pin}}$ is usually written as \cite{Everschor2012, Iwasaki2013}.
+The phenemenological pinning force $\mathbold{F}_{\textrm{pin}}$ is usually written as \cite{Everschor2012, Iwasaki2013}.
 \begin{align}
 \mathbold{F}_{\textrm{pin}} = -4\pi v_{\textrm{pin}} f(\frac{v}{v_{\textrm{pin}}}) \frac{\mathbold{v}}{v},
 \end{align}
-where the function $f(\frac{v}{v_{\textrm{pin}}})$ goes towards unity for small skyrmion velocities $v$. In the low velocity limit one therefore approximates the pinning force by
+where the function $f(\frac{v}{v_{\textrm{pin}}})$ goes towards unity for small skyrmion velocities $v$. This is to ensure that the force does not vanish as $v\rightarrow 0$, but there is a constant force barrier that the skyrmion needs to overcome to have a velocity greater than zero. In the low velocity limit one therefore approximates the pinning force by
 \begin{align}
 \mathbold{F}_{\textrm{pin}} = - v_{\textrm{pin}} \frac{\mathbold{v}}{v},
 \end{align}
